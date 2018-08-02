@@ -1,0 +1,7 @@
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/edit_cache.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/test.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/fortune2db.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/uninstall.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/rebuild_cache.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/fetch-translations.dir
+/home/bundito/projects/fortune/unix2database/build/CMakeFiles/fortune2db_autogen.dir
