@@ -1,5 +1,0 @@
-# Hashes of file build rules.
-061a8c526ab6221c2f40cdb222f38883 CMakeFiles/fetch-translations
-f4990d3eccac01c26b96b8e492597496 CMakeFiles/fortune2db_autogen
-022187e561f345b25c29c2da14e57a92 CMakeFiles/uninstall
-b97f2137557d4c35dc59150ed6b1a737 releaseme

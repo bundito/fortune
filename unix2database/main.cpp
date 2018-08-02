@@ -29,9 +29,9 @@ int main(int argc,char **argv)
 
     // OPEN fortune file
 
-    int group_id = 1;
+    int group_id = 7;
 
-    QFile fortune_file(QString("/home/bundito/projects/fortune/fortune_files/einsteins"));
+    QFile fortune_file(QString("/home/bundito/projects/fortune/fortune_files/computers2"));
     if (!fortune_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Open fortune file failed.";
         qDebug() << fortune_file.errorString();
