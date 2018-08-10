@@ -9,9 +9,9 @@ Item {
 
 	property var url:Qt.resolvedUrl(".");
 	property var exec:url.substring(7,url.length);
-	property var groupQuery: "'group_id IN \(1,3,5,7,9\)' ";
-	property var oneGroup: "'group_id=19' "
-	property var cmd:"bash " + exec+ "code/fortuneQuery.sh " + oneGroup + exec + "code/"
+	property var groupQuery: "'group_id IN \(19\)' ";
+	property var oneGroup: "'group_id=20' "
+	property var cmd:"bash " + exec+ "code/fortuneQuery.sh " + groupQuery + exec + "code/"
 	property var fortune;
 	property var msgHeight;
 	property var msgWidth;
@@ -28,7 +28,7 @@ Item {
 	  connectedSources: []
 
 	  onNewData: {
-	    fortune = data.stdout;
+	    fortune = "\n" + data.stdout;
 	    //fortuneLabel.text = fortune;
 	    console.log(data.stderr);
 
@@ -37,20 +37,20 @@ Item {
 	    var longest = 0;
 	    var len = 0;
 	    var lines = fortune.split("\n");
-	    for (var i=0; i<lines.length; i++) {
+	    for (var i=0; i<lines.length-1; i++) {
 	    	var line = lines[i];
-	    	console.log(line);
+	    	console.log("Line " + i + " " + line);
     		len = line.length;
 	    	if (len > longest) {
 	    		longest = len;
 	    	}
 	    }
 
-	    msgWidth = ((Kirigami.Units.gridUnit + 5) * (longest/2));
+	    msgWidth = ((Kirigami.Units.gridUnit + 7) * (longest/2));
 
-	    var nCount = (fortune.split("\n").length - 1)
+	    var nCount = (fortune.split("\n").length - 0)
 
-	    msgHeight = (Kirigami.Units.gridUnit  * 1.5) * (nCount + 2);
+	    msgHeight = (Kirigami.Units.gridUnit  * 1.0) * (nCount + 2);
 
 	}
  }

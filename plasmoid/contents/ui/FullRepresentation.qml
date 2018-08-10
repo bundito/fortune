@@ -20,6 +20,12 @@ Item {
 
 	
 
+	Rectangle { 
+		border.width: 2
+		border.color: "white"
+		color: "black"
+		anchors.fill: parent
+
 
 		Label {
 			id: fortuneLabel
@@ -35,10 +41,9 @@ Item {
 		
 	}	
 
-	
+	}
 
  
-
 
 
 
