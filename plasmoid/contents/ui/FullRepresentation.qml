@@ -10,51 +10,32 @@ Item {
 
 	id: baseItem
 
-	property var url:Qt.resolvedUrl(".");
-	property var exec:url.substring(7,url.length);
+	
 
-	property var cmd:"bash -c '" + exec+ "code/fortuneQuery.sh group_id=4 '" + exec + "code/"
-
-	property var fortune;
+	width: root.msgWidth
+	height: root.msgHeight
 
 	//height: 10
 	//width: 10	
-	
 
 	
 
-	PlasmaCore.DataSource {
-	  id: queryDB
-	  engine: "executable"
-	  connectedSources: []
 
-	  onNewData: {
-	    fortune = data.stdout;
-	    fortuneLabel.text = fortune;
-	    console.log(data.stderr);
-
-	    var lines = (fortune.split("\n").length - 1);
-	    baseItem.height = (Kirigami.Units.gridUnit * 3) * lines;
-	    fortuneLabel.width =  Kirigami.Units.gridUnit * 40;
-	    //disconnectSourcfe();
-	  }
+		Label {
+			id: fortuneLabel
+			anchors.centerIn: parent
+			font.family: "Courier"
+			text: root.fortune
 
 	}
 
-	Label {
-		id: fortuneLabel
-		font.family: "Courier"
+	
 		
 		
 		
 	}	
 
-	Component.onCompleted: {
-	  queryDB.connectedSources = cmd;
-	  
-	 // console.log(cmd);
-	}
-
+	
 
  
 
@@ -62,4 +43,3 @@ Item {
 
 
 	
-}
