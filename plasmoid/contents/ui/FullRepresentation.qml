@@ -10,14 +10,52 @@ Item {
 
 	id: baseItem
 
+	height: msgHeight
+	width: msgWidth
+
+	PlasmaCore.DataSource {
+	  id: queryDB
+	  engine: "executable"
+	  interval: 250
+	  connectedSources: []
+
+	  onNewData: {
+	    fortune = "\n" + data.stdout;
+	    //fortuneLabel.text = fortune;
+	    console.log(data.stderr);
+
+	    console.log("XXX CMD XXX "+cmd);
+
+	    var longest = 0;
+	    var len = 0;
+	    var lines = fortune.split("\n");
+	    for (var i=0; i<lines.length-1; i++) {
+	      var line = lines[i];
+	      console.log("Line " + i + " " + line);
+	      len = line.length;
+	      if (len > longest) {
+	        longest = len;
+	      }
+	    }
+
+	    root.msgWidth = ((Kirigami.Units.gridUnit + 7) * (longest/2));
+
+	    var nCount = (fortune.split("\n").length - 0)
+
+	    root.msgHeight = (Kirigami.Units.gridUnit  * 1.0) * (nCount + 2);
+
+	    queryDB.connectedSources = [];
+
+	    
+
+	}
+	}
+
 	
 
-	width: root.msgWidth
-	height: root.msgHeight
+	
 
-	//height: 10
-	//width: 10	
-
+	 
 	
 
 	Rectangle { 
@@ -35,15 +73,19 @@ Item {
 
 	}
 
+
+		}
+
 	
-		
 		
 		
 	}	
 
-	}
 
- 
+
+
+	
+
 
 
 
