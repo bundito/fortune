@@ -14,6 +14,9 @@ Item {
 
 
    PlasmaCore.IconItem {
+
+    id: cookieImg
+
     source:  Qt.resolvedUrl("../images/fortune-cookie.png")
     anchors.fill: parent
    }
@@ -24,6 +27,8 @@ Item {
     queryDB.interval = 500;
     queryDB.connectedSources = cmd;
     queryDB.interval = 0;
+
+    cookieImg.source = Qt.resolvedUrl("../images/broken-cookie.png")
     
   }
 
@@ -71,6 +76,11 @@ queryDB.connectedSources = [];
       onClicked: {
         getFortune();
         plasmoid.expanded = !plasmoid.expanded;
+
+        if (!plasmoid.expanded) {
+            cookieImg.source = Qt.resolvedUrl("../images/fortune-cookie.png")
+        }
+
         //msgRectangle.visible = true;
       }
       
