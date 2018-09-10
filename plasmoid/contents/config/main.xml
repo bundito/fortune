@@ -5,35 +5,19 @@
   http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
 
-  <group name="Ratios">
-    <entry name="r1610" type="bool">
-     <label>16:10</label>
-     <default>true</default>
-   </entry>
-   <entry name="r169" type="bool">
-    <label>16:9</label>
-    <default>true</default>
+<group name="DisplaySize">
+  
+  <entry name="height" type="int">
+    <label>Height</label>
+    <default>100</default>
   </entry>
-   <entry name="r54" type="bool">
-    <label>5:4</label>
-    <default>true</default>
+
+  <entry name="width" type="int">
+    <label>Width</label>
+    <default>100</default>
   </entry>
-   <entry name="r43" type="bool">
-    <label>4:3</label>
-    <default>true</default>
-  </entry>
-   <entry name="r32" type="bool">
-    <label>3:2</label>
-    <default>true</default>
-  </entry>
-   <entry name="rodd" type="bool">
-    <label>Unusual/Rare</label>
-    <default>true</default>
-  </entry>
-   <entry name="modeCount" type="int">
-    <label>Number Of Modes To Be Shown</label>
-    <default>2</default>
-  </entry>
+
 </group>
+
 
 </kcfg>

@@ -1,0 +1,2 @@
+./fortuneQuery.sh 'group_id=19' /home/bundito/projects/fortune/plasmoid/contents/ui/code 
+
