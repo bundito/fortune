@@ -8,37 +8,51 @@ import org.kde.kirigami 2.4 as Kirigami
 
 Item {
 
+
+
 	
 
 	id: baseItem
-	Layout.maximumHeight: fortune.length * 10
-	Layout.maximumWidth: fortune.length * 10
+	Layout.preferredWidth: Kirigami.Units.smallSpacing * 175;
+	Layout.preferredHeight: Kirigami.Units.smallSpacing * 35;
+	
+
+
 
 	
 	RowLayout {
 
 		id: fortuneRow
 
+		anchors.centerIn: parent
 		
 
+		
+
+
+
+		
+
+	Rectangle {
 		
 
 		Label {
 			id: fortuneLabel
+			anchors.centerIn: parent
+	
+			
 			font.family: "Courier"
 			text: fortune
 
 
 		}
 
+	}	
 
 
 	}
 
-	function getHeight() {
-		var lines = fortune.split("");
-		return lines.length;
-	}
+	
 
 
 }

@@ -4,7 +4,7 @@
 if command -v sqlite3 &>/dev/null; then
 	#success, we can proceed
 	
-	sql="SELECT height, width, message FROM fortunes WHERE $1 ORDER BY RANDOM() LIMIT 1"
+	sql="SELECT message FROM fortunes WHERE $1 ORDER BY RANDOM() LIMIT 1"
 	#echo $sql;
 	#echo "1 = $1"
 	#echo "2 = $2"

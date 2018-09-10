@@ -35,25 +35,27 @@ Item {
     connectedSources: []
 
     onNewData: {
-      var fortuneData = data.stdout;
-      var fortuneLines = fortuneData.split("\|");
-      var fortuneHeight = fortuneLines[0];
-      var fortuneWidth = fortuneLines[1];
-      var fortuneMsg =fortuneLines[2, fortuneHeight];
 
-      console.log()  << fortuneMsg;
+  
+/*
+      // lorem.txt is 10 lines and 78 characters
+      fortune = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n"
++ "incididunt ut labore et dolore magna aliqua. Rhoncus est pellentesque elit\n"
++ "ullamcorper dignissim cras. Dis parturient montes nascetur ridiculus mus\n"
++ "mauris. Viverra accumsan in nisl nisi scelerisque eu. Felis donec et odio\n"
++ "pellentesque diam volutpat commodo. In hac habitasse platea dictumst quisque\n"
++ "sagittis purus sit. Ullamcorper morbi tincidunt ornare massa eget egesta\n"
++ "purus. Facilisi etiam dignissim diam quis enim. Tristique et egestas qui\n"
++ "ipsum. Tellus elementum sagittis vitae et. Mauris rhoncus aenean vel elit."
 
-      fortune = "This is a test.";
+*/
 
-      msgWidth= fortuneWidth * Kirigami.Units.smallSpacing;
-      msgHeight = fortuneHeight * Kirigami.Units.smallSpacing;
+fortune = data.stdout;
+fortune = fortune.slice(0, -1);
 
-      queryDB.connectedSources = [];
+queryDB.connectedSources = [];
 
-      //fortuneLabel.text = fortune;
-
-      console.log("W: " + msgWidth + " H: " + msgHeight);
-
+  
 
   }
 
