@@ -11,8 +11,7 @@ Item {
 	property var oneGroup: "'group_id=20' "
 	property var cmd:"bash " + exec+ "code/fortuneQuery.sh " + groupQuery + exec + "code/"
 	property var fortune: "";
-	property var msgHeight: 0;
-	property var msgWidth: 0;
+	property var cookieIcon: Qt.resolvedUrl("../images/fortune-cookie.png");
 
 	id: root
 
