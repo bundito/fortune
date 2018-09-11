@@ -87,7 +87,7 @@ Item {
 						text: "Classic literary quotations"
 					}
 					Label {
-						text: "524"
+						text: "494"
 					}
 					Label {
 						textFormat: Text.richText;
@@ -109,7 +109,7 @@ Item {
 							text: "Star Wars quotations (original trilogy)"
 						}
 						Label {
-							text: "134"
+							text: "118"
 						}
 						Label {
 							textFormat: Text.richText;
@@ -131,7 +131,7 @@ Item {
 								text: "(Old) computer jokes"
 							}
 							Label {
-								text: "2044"
+								text: "1790"
 							}
 							Label {
 								textFormat: Text.richText;
@@ -153,7 +153,7 @@ Item {
 									text: "Classic funny people like Mark Twain"
 								}
 								Label {
-									text: "394"
+									text: "360"
 								}
 								Label {
 									textFormat: Text.richText;
@@ -175,7 +175,7 @@ Item {
 										text: "Perl and perl hackers"
 									}
 									Label {
-										text: "546"
+										text: "544"
 									}
 									Label {
 										textFormat: Text.richText;
@@ -186,7 +186,7 @@ Item {
 									CheckBox {
 									 		id: group8
 									 		onClicked: {
-									 			plasmoid.configuration[group8] = !plasmoid.configuration[group18]
+									 			plasmoid.configuration[group8] = !plasmoid.configuration[group8]
 									 			countUpdate();
 									 		}	
 									 	}
@@ -219,7 +219,7 @@ Item {
 												text: "Science jokes, long and short"
 											}
 											Label {
-												text: "1250"
+												text: "1140"
 											}
 											Label {
 												textFormat: Text.richText;
@@ -240,7 +240,7 @@ Item {
 										text: "Unusual or funny definitions"
 									}
 									Label {
-										text: "2406"
+										text: "2342"
 									}
 									Label {
 										textFormat: Text.richText;
@@ -262,7 +262,7 @@ Item {
 										text: "The Hitchhiker's Guide To The Galaxy"
 									}
 									Label {
-										text: "178"
+										text: "154"
 									}
 									Label {
 										textFormat: Text.richText;
@@ -284,7 +284,7 @@ Item {
 										text: "A classic fortune file"
 									}
 									Label {
-										text: "863"
+										text: "862"
 									}
 									Label {
 										textFormat: Text.richText;
@@ -306,7 +306,7 @@ Item {
 									text: "Quips about magic, wizards, etc."
 								}
 								Label {
-									text: "60"
+									text: "48"
 								}	
 								Label {
 									textFormat: Text.richText;
@@ -317,7 +317,7 @@ Item {
 							CheckBox {
 							 		id: group14
 							 		onClicked: {
-							 			plasmoid.configuration[group14] = !plasmoid.configuration[group4];
+							 			plasmoid.configuration[group14] = !plasmoid.configuration[group14];
 							 			countUpdate();
 							 		}	
 							 	}
@@ -350,7 +350,7 @@ Item {
 									text: "Jokes, etc, about the workplace"
 								}
 								Label {
-									text: "1260"
+									text: "1164"
 								}
 								Label {
 									textFormat: Text.richText;
@@ -372,7 +372,7 @@ Item {
 								text: "Another classic collection"
 							}
 							Label {
-								text: "2266"
+								text: "2120"
 							}
 							Label {
 								textFormat: Text.richText;
@@ -394,7 +394,7 @@ Item {
 							text: "Linux-themed messages and quotes"
 						}
 						Label {
-							text: "206"
+							text: "200"
 						}
 						Label {
 							textFormat: Text.richText;
@@ -438,7 +438,7 @@ Item {
 						text: "Homer Simpson quotations"
 					}
 					Label {
-						text: "171"
+						text: "170"
 					}
 					Label {
 						textFormat: Text.richText;
@@ -457,10 +457,10 @@ Item {
 						text: "matrix"
 						}
 					Label {
-						text: "Quotations from The Matrix"
+						text: "Quotations from 'The Matrix'"
 					}
 					Label {
-						text: "104"
+						text: "70"
 					}
 					Label {
 						textFormat: Text.richText;

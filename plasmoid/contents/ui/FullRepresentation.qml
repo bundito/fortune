@@ -37,7 +37,7 @@ Item {
 			Layout.minimumWidth: baseItem.width -5
 
 		
-		border.width: 2
+		border.width: 50
 		border.color: "#00000000"
 		color: theme.backgroundColor;
 		
