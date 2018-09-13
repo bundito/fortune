@@ -8,9 +8,9 @@ Item {
 	property var url:Qt.resolvedUrl(".");
 	property var exec:url.substring(7,url.length);
 	//property var plasmoid.configuration["activeGroups"]: groupQuery;
-	property var groupQuery: plasmoid.configuration["cfg_activeGroups"];
+	readonly property string groupQuery: plasmoid.configuration.activeGroups;
 
-	
+
 	
 	//property var groupQuery: "'group_id IN \(1,3,5,7,9,11,13,15,17\)' ";
 	//property var oneGroup: "'group_id=20' "
@@ -32,6 +32,8 @@ Item {
 	Plasmoid.fullRepresentation : FullRepresentation {}
 	Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 
+			
+			
 	
 
 

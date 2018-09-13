@@ -102,15 +102,10 @@
     <default>false</default>
   </entry>
 
-  <entry name="groupstring" type="string">
-    <label>SQL query for selected groups</label>
-      <default>'group_id IN \(12)'</default>
-  </entry>
-
-  <entr name="activeGroups" type="string">
+  <entry name="activeGroups" type="string">
     <label>list of active groups</label>
     <default>12</default>
-  </entr>
+  </entry>
 
   <entry name="savedList" type="string">
     <label>Saved list of selected groups</label>

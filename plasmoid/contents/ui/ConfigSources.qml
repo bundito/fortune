@@ -40,7 +40,7 @@ Item {
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
 	//property alias cfg_activeGroups: groupList;
-	property var groupList: plasmoid.configution["cfg_savedList"];
+	property var groupList: plasmoid.configution["cfg_activeGroups"];
 	// GROUP20	
 
 	
@@ -416,11 +416,11 @@ Item {
 
 			groupString = groupList.join();
 
-			var configString = "'group_id IN \(" + groupString + "\)'";
+			var configString = groupString;
 
-			console.log(configString);
+			console.log(groupString);
 
-			plasmoid.configuration["cfg_activeGroups"] = configString;
+			plasmoid.configuration.activeGroups = groupString;
 			plasmoid.configuration["cfg_savedList"] = groupList;
 		}
 
@@ -435,4 +435,3 @@ Item {
 
 	
 }
-	

@@ -9,6 +9,8 @@ import org.kde.kirigami 2.4 as Kirigami
 Item {
 
 
+	
+	
 
 
 
@@ -22,24 +24,29 @@ Item {
 
 
 
-	RowLayout {
-
-		id: fortuneRow
-
-		anchors.centerIn: parent
 	
+
+		
+
+		
 
 		Rectangle {
 
-			id: displayRectangle
+			anchors.centerIn: parent
 
-			Layout.minimumHeight: baseItem.height - 5
-			Layout.minimumWidth: baseItem.width -5
+			color: "black"
+
+			Rectangle {
+				Layout.minimumHeight: parent.height - 5;
+				Layout.minimumWidth: parent.width - 5;
+				color: theme.backgroundColor;
+				//border: theme.textColor;
+				
+			
+
+			
 
 		
-		border.width: 50
-		border.color: "#00000000"
-		color: theme.backgroundColor;
 		
 		Label {
 			id: fortuneLabel
@@ -48,7 +55,8 @@ Item {
 	
 			
 			font.family: "Courier"
-			color: theme.textColor
+			color: "white"
+			//color: theme.textColor
 			text: fortune
 		}
 
@@ -67,11 +75,11 @@ Item {
 
 
 	}
-
+}
 	
 
 
-}
+
 	
 
 
