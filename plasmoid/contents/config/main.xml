@@ -5,16 +5,116 @@
   http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
 
-<group name="DisplaySize">
+<group name="FortuneSources">
   
-  <entry name="height" type="int">
-    <label>Height</label>
-    <default>100</default>
+  <entry name="group1" type="bool">
+    <label>chalkboard</label>
+    <default>false</default>
   </entry>
 
-  <entry name="width" type="int">
-    <label>Width</label>
-    <default>100</default>
+ <entry name="group2" type="bool">
+    <label>dislclaimer</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group3" type="bool">
+    <label>literature</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group4" type="bool">
+    <label>starwars</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group5" type="bool">
+    <label>computer2</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group6" type="bool">
+    <label>humorists</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group7" type="bool">
+    <label>perl</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group8" type="bool">
+    <label>startrek</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group9" type="bool">
+    <label>science</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group10" type="bool">
+    <label>definitions</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group11" type="bool">
+    <label>hitchhiker</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group12" type="bool">
+    <label>fortune</label>
+    <default>true</default>
+  </entry>
+
+  <entry name="group14" type="bool">
+    <label>aphorisms</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group15" type="bool">
+    <label>work</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group16" type="bool">
+    <label>cookie</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group17" type="bool">
+    <label>linux</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group18" type="bool">
+    <label>einsteins</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group19" type="bool">
+    <label>homer</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="group20" type="bool">
+    <label>matrix</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="groupstring" type="string">
+    <label>SQL query for selected groups</label>
+      <default>'group_id IN (12)'</default>
+  </entry>
+
+  <entr name="activeGroups" type="string">
+    <label>list of active groups</label>
+    <default>12</default>
+  </entr>
+
+  <entry name="firstRun" type="bool">
+    <label>first run tracker</label>
+    <default>true</default>
   </entry>
 
 </group>

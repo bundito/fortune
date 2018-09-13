@@ -17,6 +17,9 @@ Item {
    }
 
     function getFortune() {
+
+      console.log(plasmoid.configuration.groupstring);
+      
     queryDB.interval = 500;
     queryDB.connectedSources = cmd;
     queryDB.interval = 0;
@@ -33,7 +36,9 @@ Item {
 
     onNewData: {
 
-  
+  console.log(cmd);
+
+
 /*
       // lorem.txt is 10 lines and 78 characters
       fortune = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n"
