@@ -104,13 +104,18 @@
 
   <entry name="groupstring" type="string">
     <label>SQL query for selected groups</label>
-      <default>'group_id IN \(12\)'</default>
+      <default>'group_id IN \(12)'</default>
   </entry>
 
   <entr name="activeGroups" type="string">
     <label>list of active groups</label>
     <default>12</default>
   </entr>
+
+  <entry name="savedList" type="string">
+    <label>Saved list of selected groups</label>
+    <default>12</default>
+  </entry>
 
   <entry name="firstRun" type="bool">
     <label>first run tracker</label>

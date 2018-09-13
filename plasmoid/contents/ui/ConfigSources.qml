@@ -14,7 +14,7 @@ Item {
 	property string path;
 	property var countSource: 'bash '+exec+"code/getCounts.sh" + " " + exec + "code";
 	property var display;
-	property var groupList: [12];
+	//property var groupList;
 	property var groupString
 	property var modeCount: 0
 	property int sampleGroup: 0
@@ -40,6 +40,7 @@ Item {
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
 	//property alias cfg_activeGroups: groupList;
+	property var groupList: plasmoid.configution["cfg_savedList"];
 	// GROUP20	
 
 	
@@ -400,6 +401,11 @@ Item {
 
 		 
 		function groupsUpdate(grp) {
+
+			if (plasmoid.configuration["firstRun"] == true) {
+				plasmoid.configuration["firstRun"] = false;
+				groupList = [12];
+			} 
 			
 			if (groupList.indexOf(grp) == -1) {
 				groupList.push(grp);
@@ -415,7 +421,7 @@ Item {
 			console.log(configString);
 
 			plasmoid.configuration["cfg_activeGroups"] = configString;
-
+			plasmoid.configuration["cfg_savedList"] = groupList;
 		}
 
 			PlasmaComponents.QueryDialog {
