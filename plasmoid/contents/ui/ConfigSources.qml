@@ -14,7 +14,7 @@ Item {
 	property string path;
 	property var countSource: 'bash '+exec+"code/getCounts.sh" + " " + exec + "code";
 	property var display;
-	property var groupList: []
+	property var groupList: [12];
 	property var groupString
 	property var modeCount: 0
 	property int sampleGroup: 0
@@ -39,7 +39,7 @@ Item {
 	property alias cfg_group17:	group17.checked
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
-	//property alias cfg_activeGroups: startList;
+	//property alias cfg_activeGroups: groupList;
 	// GROUP20	
 
 	
@@ -396,20 +396,25 @@ Item {
 				
 	
 
+
+
 		 
 		function groupsUpdate(grp) {
 			
 			if (groupList.indexOf(grp) == -1) {
 				groupList.push(grp);
 			} else {
-				groupList.splice(grp, 1);
+				var splicePoint = groupList.indexOf(grp);
+				groupList.splice(splicePoint, 1);
 			}
 
 			groupString = groupList.join();
 
-			var configString = "'group_id IN (" + groupString + ")'";
+			var configString = "'group_id IN \(" + groupString + "\)'";
 
 			console.log(configString);
+
+			plasmoid.configuration["cfg_activeGroups"] = configString;
 
 		}
 

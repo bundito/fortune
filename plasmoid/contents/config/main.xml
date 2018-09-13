@@ -104,7 +104,7 @@
 
   <entry name="groupstring" type="string">
     <label>SQL query for selected groups</label>
-      <default>'group_id IN (12)'</default>
+      <default>'group_id IN \(12\)'</default>
   </entry>
 
   <entr name="activeGroups" type="string">
