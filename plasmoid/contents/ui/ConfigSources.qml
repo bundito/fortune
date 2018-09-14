@@ -4,7 +4,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1 as Layout
-import org.kde.kirigami 2.0 as Kirigami
+import QtQuick.Dialogs 1.3 as Dialogs
 
 
 
@@ -55,39 +55,6 @@ Item {
 	// GROUP20	
 
 
-
-	PlasmaCore.DataSource {
-		id: dialogDB
-		engine: "executable"
-		//interval: 250
-		connectedSources: []
-
-		onNewData: {
-			sampleText = data.stdout;
-			console.log(sampleText);
-		}
-	} // end DataSource
-
-
-	function getSample(sampleGroup) {
-		sampleQuery = sampleGroup;
-		dialogDB.connectedSources = [cmd]
-	}
-
-		PlasmaComponents.QueryDialog {
-			id: sampleBox
-			width:600
-			//sampleDB.connectedsources: sampleGroup
-			acceptButtonText: "Another";
-			rejectButtonText: "Done";
-			message: sampleText;
-			
-	}
-
-
-	
-
-
 	Layout.GridLayout {
 		columns: 4
 		columnSpacing: 25
@@ -115,7 +82,7 @@ Item {
 					id: group12
 					onClicked: {
 						plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
-						groupsUpdate(12);
+						groupsUpdate(12, group12);
 					}	
 				}
 				Label {
@@ -134,7 +101,7 @@ Item {
 				id: group1
 				onClicked: {
 					plasmoid.configuration[cfg_group1] = !plasmoid.configuration[cfg_group1];
-					groupsUpdate(1);
+					groupsUpdate(1, group1);
 					}	
 				}
 				Label {
@@ -153,7 +120,7 @@ Item {
 					id: group2
 					onClicked: {
 						plasmoid.configuration[cfg_group2] = !plasmoid.configuration[cfg_group2];
-						groupsUpdate(2);
+						groupsUpdate(2, group2);
 					}	
 				}
 				Label {
@@ -172,7 +139,7 @@ Item {
 					id: group4
 					onClicked: {
 		 				plasmoid.configuration[cfg_group4] = !plasmoid.configuration[cfg_group4];
-			 			groupsUpdate(4);
+			 			groupsUpdate(4, group3);
 			 		}	
 			 	}
 				Label {
@@ -191,7 +158,7 @@ Item {
 					id: group5
 					onClicked: {
 						plasmoid.configuration[cfg_group5] = !plasmoid.configuration[cfg_group5]
-						groupsUpdate(5);
+						groupsUpdate(5, group5);
 					}	
 				}
 				Label {
@@ -210,7 +177,7 @@ Item {
 					id: group6
 					onClicked: {
 						plasmoid.configuration[cfg_group6] = !plasmoid.configuration[cfg_group6];
-						groupsUpdate(6);
+						groupsUpdate(6, group6);
 					}	
 				}
 				Label {
@@ -229,7 +196,7 @@ Item {
 					id: group7
 					onClicked: {
 						plasmoid.configuration[cfg_group7] = !plasmoid.configuration[cfg_group7];
-						groupsUpdate(7);
+						groupsUpdate(7, group7);
 					}	
 				}
 				Label {
@@ -248,7 +215,7 @@ Item {
 					id: group8
 					onClicked: {
 						plasmoid.configuration[cfg_group8] = !plasmoid.configuration[cfg_group8]
-						groupsUpdate(8);
+						groupsUpdate(8, group8);
 					}	
 				}
 				Label {
@@ -268,7 +235,7 @@ Item {
 					id: group9
 					onClicked: {
 						plasmoid.configuration[cfg_group9] = !plasmoid.configuration[cfg_group9];
-						groupsUpdate(9);
+						groupsUpdate(9, group9);
 					}	
 				}
 				Label {
@@ -287,7 +254,7 @@ Item {
 					id: group10
 					onClicked: {
 						plasmoid.configuration[cfg_group10] = !plasmoid.configuration[cfg_group10];
-						groupsUpdate(10);
+						groupsUpdate(10, group10);
 					}	
 				}
 				Label {
@@ -306,7 +273,7 @@ Item {
 					id: group11
 					onClicked: {
 						plasmoid.configuration[cfg_group11] = !plasmoid.configuration[cfg_group11];
-						groupsUpdate(11);
+						groupsUpdate(11, group11);
 					}	
 				}
 				Label {
@@ -326,7 +293,7 @@ Item {
 					id: group15
 					onClicked: {
 						plasmoid.configuration[cfg_group15] = !plasmoid.configuration[cfg_group15];
-						groupsUpdate(15);
+						groupsUpdate(15, group12);
 					}	
 				}
 				Label {
@@ -345,7 +312,7 @@ Item {
 				id: group17
 				onClicked: {
 					plasmoid.configuration[cfg_group17] = !plasmoid.configuration[cfg_group17];
-					groupsUpdate(17);
+					groupsUpdate(17, group17);
 						}	
 					}
 				Label {
@@ -364,7 +331,7 @@ Item {
 				id: group18
 				onClicked: {
 					plasmoid.configuration[cfg_group18] = !plasmoid.configuration[cfg_group18];
-					groupsUpdate(18);
+					groupsUpdate(18, group18);
 					}	
 				}
 				Label {
@@ -382,7 +349,7 @@ Item {
 				CheckBox {
 				id: group19
 				onClicked: {
-					groupsUpdate(19);
+					groupsUpdate(19, group19);
 					plasmoid.configuration[cfg_group19] = !plasmoid.configuration[cfg_group19];
 						}	
 					}
@@ -400,13 +367,21 @@ Item {
 			}
 
 		 
-		function groupsUpdate(grp) {
+		function groupsUpdate(grp, box) {
 
 			if (plasmoid.configuration["firstRun"] == true) {
 				plasmoid.configuration["firstRun"] = false;
 				groupList = [12];
 			} 
 			
+			if ((groupList.length == 1) && groupList.indexOf(grp) >= 0) {
+				box.checked = true;
+				noSourcesDialog.visible = true;
+				return false;
+				
+			}
+
+
 			if (groupList.indexOf(grp) == -1) {
 				groupList.push(grp);
 			} else {
@@ -425,7 +400,25 @@ Item {
 		}
 
 
+		Dialogs.MessageDialog {
+			id: noSourcesDialog
+			visible: false
+			icon: Dialogs.StandardIcon.Warning
 
+			title: "No Messages Chosen!"
+
+			text: "You need to have at least one category of fortune messages selected. Otherwise, you won't get "
+			+ "regular doses of wisdom.\n\n"
+			+ "Please go back and select a category or two."
+
+
+			onAccepted: {
+				var reCheck = ("group" + grp).checked = true;
+				noSourcesDialog.visible = false;
+
+			}
+
+		}
 		
 
 
