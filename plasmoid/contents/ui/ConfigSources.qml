@@ -90,11 +90,29 @@ Item {
 
 	Layout.GridLayout {
 		columns: 4
+		columnSpacing: 25
 				
+				// COLUMN HEADER
+				Label {
+					text: ""
+				}
+				Label {
+					font.bold: true
+					text: "Old Filename"
+				}
+				Label {
+					font.bold: true
+					text: "Description"
+				}
+				Label {
+					font.bold: true
+					text: "# Of Fortunes"
+				}
+
+
 				// #12 - Fortune
 				CheckBox {
 					id: group12
-					
 					onClicked: {
 						plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
 						groupsUpdate(12);
@@ -107,7 +125,7 @@ Item {
 					text: "A classic fortune file"
 				}
 				Label {
-					text: "(862)"
+					text: "862"
 				}
 				
 
@@ -126,7 +144,7 @@ Item {
 					text: "Bart Simpson at the chalkboard"
 				}
 				Label {
-					text: "(354)"
+					text: "354"
 				}
 			
 
@@ -145,7 +163,7 @@ Item {
 					text: "Product & Service disclaimers"
 				}
 				Label {
-					text: "(568)"
+					text: "568"
 				}
 		
 
@@ -164,7 +182,7 @@ Item {
 					text: "Star Wars quotations (original trilogy)"
 				}
 				Label {
-					text: "(118)"
+					text: "118"
 					}
 
 				
@@ -183,7 +201,7 @@ Item {
 					text: "(Old) computer jokes"
 				}
 				Label {
-					text: "(1790)"
+					text: "1790"
 				}
 				
 
@@ -202,7 +220,7 @@ Item {
 					text: "Classic funny people like Mark Twain"
 				}
 				Label {
-					text: "(360)"
+					text: "360"
 				}
 				
 
@@ -221,7 +239,7 @@ Item {
 					text: "Perl and perl hackers"
 				}
 				Label {
-					text: "(544)"
+					text: "544"
 				}
 
 
@@ -240,7 +258,7 @@ Item {
 					text: "Star Trek (TOS) quotations"
 				}
 				Label {
-					text: "(128)"
+					text: "128"
 				}
 					
 
@@ -260,7 +278,7 @@ Item {
 					text: "Science jokes, long and short"
 				}
 				Label {
-					text: "(1140)"
+					text: "1140"
 				}
 					
 
@@ -273,13 +291,13 @@ Item {
 					}	
 				}
 				Label {
-					text: "definitions"
+					text: "Oddball definitions"
 					}
 				Label {
 					text: "Unusual or funny definitions"
 				}
 				Label {
-					text: "(2342)"
+					text: "2342"
 				}
 
 
@@ -298,7 +316,7 @@ Item {
 					text: "The Hitchhiker's Guide To The Galaxy"
 				}
 				Label {
-					text: "(154)"
+					text: "154"
 				}
 					
 								
@@ -318,7 +336,7 @@ Item {
 					text: "Jokes, etc, about the workplace"
 				}
 				Label {
-					text: "(1164)"
+					text: "1164"
 				}
 
 
@@ -337,7 +355,7 @@ Item {
 					text: "Linux-themed messages and quotes"
 				}
 				Label {
-					text: "(200)"
+					text: "200"
 				}
 
 						
@@ -356,7 +374,7 @@ Item {
 					text: "Quotations from Albert Einstein"
 				}
 				Label {
-					text: "(362)"
+					text: "362"
 				}
 
 
@@ -375,7 +393,7 @@ Item {
 					text: "Homer Simpson quotations"
 				}
 				Label {
-					text: "(170)"
+					text: "170"
 				}
 
 
