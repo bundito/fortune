@@ -4,6 +4,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1 as Layout
+import org.kde.kirigami 2.0 as Kirigami
 
 
 
@@ -12,13 +13,23 @@ Item {
 	property var url:Qt.resolvedUrl(".");
 	property var exec:url.substring(7,url.length);
 	property string path;
-	property var countSource: 'bash '+exec+"code/getCounts.sh" + " " + exec + "code";
+	property var sampleQuery;
+
+	
+
+
+		
+		//property var groupQuery: "'group_id IN \(1,3,5,7,9,11,13,15,17\)' ";
+		//property var oneGroup: "'group_id=20' "
+		property var cmd:"bash " + exec+ "code/fortuneQuery.sh " + sampleQuery + " " + exec + "code/";
 	property var display;
 	//property var groupList;
 	property var groupString
 	property var modeCount: 0
 	property int sampleGroup: 0
 	property var grp;
+	property string sampleText;
+	
 
 	property alias cfg_group1:	group1.checked
 	property alias cfg_group2:	group2.checked
@@ -43,7 +54,36 @@ Item {
 	property var groupList: plasmoid.configution["cfg_activeGroups"];
 	// GROUP20	
 
-	
+
+
+	PlasmaCore.DataSource {
+		id: dialogDB
+		engine: "executable"
+		//interval: 250
+		connectedSources: []
+
+		onNewData: {
+			sampleText = data.stdout;
+			console.log(sampleText);
+		}
+	} // end DataSource
+
+
+	function getSample(sampleGroup) {
+		sampleQuery = sampleGroup;
+		dialogDB.connectedSources = [cmd]
+	}
+
+		PlasmaComponents.QueryDialog {
+			id: sampleBox
+			width:600
+			//sampleDB.connectedsources: sampleGroup
+			acceptButtonText: "Another";
+			rejectButtonText: "Done";
+			message: sampleText;
+			
+	}
+
 
 	
 
@@ -96,7 +136,7 @@ Item {
 				
 				text: "<a href=\"1\">Sample</a>"
 				onLinkActivated: {
-					sampleBox.sampleGroup = 1;
+					getSample(1)
 					sampleBox.open();
 				}
 				
@@ -394,11 +434,6 @@ Item {
 
 				}
 
-				
-	
-
-
-
 		 
 		function groupsUpdate(grp) {
 
@@ -424,14 +459,15 @@ Item {
 			plasmoid.configuration["cfg_savedList"] = groupList;
 		}
 
-			PlasmaComponents.QueryDialog {
-				id: sampleBox
-				property var sampleGroup;
-				acceptButtonText: "Another";
-				rejectButtonText: "Done";
-				message: "Group " + sampleGroup;		
-			}
 
 
+		
+
+
+		
+			
 	
-}
+
+	} // END MAIN ITEM
+			 	
+	

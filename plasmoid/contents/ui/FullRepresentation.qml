@@ -20,42 +20,37 @@ Item {
 	//Layout.preferredWidth: Kirigami.Units.smallSpacing * 175;
 	//Layout.preferredHeight: Kirigami.Units.smallSpacing * 35;
 
-
+	
 
 
 
 	
 
 		
+Rectangle {
 
-		
-
-		Rectangle {
-
-			anchors.centerIn: parent
-
-			color: "black"
-
-			Rectangle {
-				Layout.minimumHeight: parent.height - 5;
-				Layout.minimumWidth: parent.width - 5;
-				color: theme.backgroundColor;
-				//border: theme.textColor;
-				
-			
+			id: displayRectangle
+						border.color: "white"
+						border.width: 50
+						anchors.centerIn: parent
 
 			
+
+
+
+
+					
 
 		
 		
 		Label {
 			id: fortuneLabel
-			// padding: 5
+			padding: 10
 			anchors.centerIn: parent
-	
 			
+			 
 			font.family: "Courier"
-			color: "white"
+			color: theme.highlightColor
 			//color: theme.textColor
 			text: fortune
 		}
@@ -75,12 +70,14 @@ Item {
 
 
 	}
-}
-	
-
-
 
 	
+
+
+
+
+
+
 
 
 
