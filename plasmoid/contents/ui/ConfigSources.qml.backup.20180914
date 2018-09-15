@@ -21,15 +21,14 @@ Item {
 		
 		//property var groupQuery: "'group_id IN \(1,3,5,7,9,11,13,15,17\)' ";
 		//property var oneGroup: "'group_id=20' "
-		
+		property var cmd:"bash " + exec+ "code/fortuneQuery.sh " + sampleQuery + " " + exec + "code/";
 
 	property var display;
-	
+	//property var groupList;
 	property var groupString
 	property var modeCount: 0
 	property int sampleGroup: 0
 	property var grp;
-	property string cmd;
 	property string sampleText;
 	
 
@@ -52,109 +51,9 @@ Item {
 	property alias cfg_group17:	group17.checked
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
-	property string cfg_groupList: groupList;
-	
-
+	//property alias cfg_activeGroups: groupList;
+	property var groupList: plasmoid.configution.activeGroups
 	// GROUP20	
-
-
-	function getSample(sampleGroup) {
-		cmd = "bash " + exec+ "code/fortuneQuery.sh " + sampleGroup + " " + exec + "code/";
-		console.log(cmd)
-		console.log("sampleGroup " + sampleGroup);
-		sampleDB.interval = 250
-		sampleDB.connectedSources = cmd;
-		//console.log(sampleText);
-
-		//sampleDB.interval = 0;
-
-		console.log("getsample")
-		console.log(sampleText)
-		
-		slowdown.running = true;
-
-		return sampleText;
-		
-	}
-
-	Timer {
-			id: slowdown
-	        interval: 100
-	        running: false
-	        repeat: false
-	        onTriggered:{
-	       	sampleBox.visible = true;
-	   }
-	}
-
-
-	Dialogs.MessageDialog {
-		id: sampleBox
-		title: "Sample Fortune"
-		visible: false;
-
-		text: "it has e"
-		
-		
-		onAccepted: {
-			sampleBox.visible = false;
-		}
-	}
-	
-
-	PlasmaCore.DataSource {
-			id: sampleDB
-			engine: "executable"
-			interval: 250
-			connectedSources: cmd
-		
-
-			onNewData: {
-				sampleText = data.stdout;
-				console.log(sampleText);
-				//sampleBox.text = sampleText;
-				sampleDB.connectedSources = [];
-				sampleDB.interval = 0;
-				console.log("datasource");
-				console.log(sampleText);
-				sampleBox.text = sampleText;
-
-			
-				
-			}
-
-		} // end DataSource
-
-		
-
-
-		
-
-
-
-
-		Dialogs.MessageDialog {
-			id: noSourcesDialog
-			visible: false
-			icon: Dialogs.StandardIcon.Warning
-
-			title: "No Messages Chosen!"
-
-			text: "You need to have at least one category of fortune messages selected. Otherwise, you won't get "
-			+ "regular doses of wisdom.\n\n"
-			+ "Please go back and select a category or two."
-
-
-			onAccepted: {
-				var reCheck = ("group" + grp).checked = true;
-				noSourcesDialog.visible = false;
-
-			}
-		}
-			
-
-		
-
 
 
 	Layout.GridLayout {
@@ -197,17 +96,11 @@ Item {
 				
 				text: "<a href=\"1\">Sample</a>"
 				onLinkActivated: {
-					sampleBox.text = "";
-					var st = getSample(2);
-					sampleBox.text = st;
-					
-					//sampleBox.visible = true;
+					getSample(1)
 					//sampleBox.open();
 				}
 				
 			}
-
-
 				
 
 				// #1 - Chalkboard
@@ -477,6 +370,11 @@ Item {
 					text: "170"
 				}
 
+				Component.onCompleted: {
+					dialogDB.connectedSources = [cmd];
+
+				}
+
 
 			}
 
@@ -507,14 +405,84 @@ Item {
 
 			var configString = groupString;
 
-			console.log("GroupString: " + groupString);
+			console.log(groupString);
 
-			plasmoid.configuration.groupList = groupString;
-			//plasmoid.configuration["cfg_savedList"] = groupList;
+			plasmoid.configuration.activeGroups = groupString;
+			plasmoid.configuration["cfg_savedList"] = groupList;
 		}
 
 
+		Dialogs.MessageDialog {
+			id: noSourcesDialog
+			visible: false
+			icon: Dialogs.StandardIcon.Warning
+
+			title: "No Messages Chosen!"
+
+			text: "You need to have at least one category of fortune messages selected. Otherwise, you won't get "
+			+ "regular doses of wisdom.\n\n"
+			+ "Please go back and select a category or two."
+
+
+			onAccepted: {
+				var reCheck = ("group" + grp).checked = true;
+				noSourcesDialog.visible = false;
+
+			}
+		}
 		
+
+		PlasmaCore.DataSource {
+				id: dialogDB
+				engine: "executable"
+				interval: 250
+				connectedSources: []
+
+				onNewData: {
+					onNewData: {
+
+  				console.log(cmd);
+
+
+				/*
+				      // lorem.txt is 10 lines and 78 characters
+				      fortune = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n"
+				+ "incididunt ut labore et dolore magna aliqua. Rhoncus est pellentesque elit\n"
+				+ "ullamcorper dignissim cras. Dis parturient montes nascetur ridiculus mus\n"
+				+ "mauris. Viverra accumsan in nisl nisi scelerisque eu. Felis donec et odio\n"
+				+ "pellentesque diam volutpat commodo. In hac habitasse platea dictumst quisque\n"
+				+ "sagittis purus sit. Ullamcorper morbi tincidunt ornare massa eget egesta\n"
+				+ "purus. Facilisi etiam dignissim diam quis enim. Tristique et egestas qui\n"
+				+ "ipsum. Tellus elementum sagittis vitae et. Mauris rhoncus aenean vel elit."
+
+				*/
+
+					sampleText = data.stdout;
+					sampleText = sampleText.slice(0, -1);
+
+					sampleDB.connectedSources = [];
+
+}
+			} // end DataSource
+}
+
+			function getSample(sampleGroup) {
+				//sampleDB.interval = 500;
+   					 sampleDB.connectedSources = cmd;
+    				sampleDB.interval = 0;
+			}
+
+				
+
+
+		Dialogs.MessageDialog {
+			id: sampleBox
+			visible: false
+			text: sampleText;
+			onAccepted: {
+				sampleBox.visible = false;
+			}
+		}
 
 		
 			

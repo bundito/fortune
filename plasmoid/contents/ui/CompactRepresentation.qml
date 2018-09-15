@@ -19,9 +19,9 @@ Item {
     function getFortune() {
 
       console.log(plasmoid.configuration.groupstring);
-      
+      cmd = "bash " + exec+ "code/fortuneQuery.sh " + groupList + " " + exec + "code/";
     queryDB.interval = 500;
-    queryDB.connectedSources = cmd;
+    queryDB.connectedSources = [cmd];
     queryDB.interval = 0;
 
    // cookieIcon = Qt.resolvedUrl("../images/broken-cookie.png");

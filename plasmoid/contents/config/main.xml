@@ -102,7 +102,7 @@
     <default>false</default>
   </entry>
 
-  <entry name="activeGroups" type="string">
+  <entry name="groupList" type="string">
     <label>list of active groups</label>
     <default>12</default>
   </entry>
