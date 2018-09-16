@@ -94,6 +94,8 @@ Item {
 
 		standardButtons: Dialogs.StandardButton.ok
 		
+
+
 		onAccepted: {
 			sampleBox.visible = false;
 		}

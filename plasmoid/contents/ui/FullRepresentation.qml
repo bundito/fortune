@@ -8,44 +8,26 @@ import org.kde.kirigami 2.4 as Kirigami
 
 Item {
 
-
-	
-	
-
-
-
 	id: baseItem
 	Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
 	Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
-	//Layout.preferredWidth: Kirigami.Units.smallSpacing * 175;
-	//Layout.preferredHeight: Kirigami.Units.smallSpacing * 35;
-
-	
-
-
-
-	
 
 		
 Rectangle {
 
 			id: displayRectangle
+						color: "green"
 						border.color: "white"
-						border.width: 50
+						border.width: 2
 						anchors.centerIn: parent
+						width: theme.mSize(theme.defaultFont).width * 74
+						height: theme.mSize(theme.defaultFont).height * 11.5
 
-			
-
-
-
-
-					
-
-		
 		
 		Label {
 			id: fortuneLabel
-			padding: 10
+			padding: 1
+			
 			anchors.centerIn: parent
 			
 			 

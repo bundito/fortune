@@ -2,16 +2,16 @@
 Encoding=UTF-8
 Name=Fortune
 Comment=Daily message with many options
-Icon=accessories-dictionary
+Icon=dialog-question
 Type=Service
 
 X-KDE-ParentApp=
-X-KDE-PluginInfo-Author=Dito
-X-KDE-PluginInfo-Email=bundito@gmail.com
+X-KDE-PluginInfo-Author=Scott P Harvey
+X-KDE-PluginInfo-Email=scott@spharvey.me
 X-KDE-PluginInfo-License=GPL
-X-KDE-PluginInfo-Name=com.bundito.xrandr
+X-KDE-PluginInfo-Name=com.bundito.fortune
 X-KDE-PluginInfo-Version=1.0
-X-KDE-PluginInfo-Website=https://github.com/bundito/xrx-output
+X-KDE-PluginInfo-Website=https://www.bundito.com/
 X-KDE-ServiceTypes=Plasma/Applet
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
