@@ -71,10 +71,7 @@ Item {
 		console.log("getsample")
 		console.log(sampleText)
 		
-		slowdown.running = true;
-
-		return sampleText;
-		
+		slowdown.running = true;		
 	}
 
 	Timer {
@@ -83,18 +80,18 @@ Item {
 	        running: false
 	        repeat: false
 	        onTriggered:{
-	       	sampleBox.visible = true;
+	       		sampleBox.visible = true;
 	   }
 	}
 
 
 	Dialogs.MessageDialog {
 		id: sampleBox
+
 		title: "Sample Fortune"
 		visible: false;
 
-		text: "it has e"
-		
+		standardButtons: Dialogs.StandardButton.ok
 		
 		onAccepted: {
 			sampleBox.visible = false;
@@ -161,51 +158,43 @@ Item {
 		columns: 4
 		columnSpacing: 25
 				
-				// COLUMN HEADER
-				Label {
-					text: ""
-				}
-				Label {
-					font.bold: true
-					text: "Old Filename"
-				}
-				Label {
-					font.bold: true
-					text: "Description"
-				}
-				Label {
-					font.bold: true
-					text: "# Of Fortunes"
-				}
+		// COLUMN HEADER
+		Label {
+			text: ""
+		}
+		Label {
+			font.bold: true
+			text: "Description"
+		}
+		Label {
+			font.bold: true
+			text: "Items"
+		}
+		Label{
+			text: ""
+		}
 
 
-				// #12 - Fortune
-				CheckBox {
-					id: group12
-					onClicked: {
-						plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
-						groupsUpdate(12, group12);
+		// #12 - Fortune
+		CheckBox {
+			id: group12
+			onClicked: {
+				plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
+				groupsUpdate(12, group12);
+			}	
+		}		
+		Label {
+			text: "A classic fortune file"
+		}
+		Label {
+			text: "862"
+		}
+		Label {
+			text: "<a href=\"1\">Sample</a>"
+			onLinkActivated: {
+				getSample(12);
 					}	
-				}
-				Label {
-					text: "fortunes"
-					}
-				Label {
-					text: "A classic fortune file"
-				}
-			Label {
-				
-				text: "<a href=\"1\">Sample</a>"
-				onLinkActivated: {
-					sampleBox.text = "";
-					var st = getSample(2);
-					sampleBox.text = st;
-					
-					//sampleBox.visible = true;
-					//sampleBox.open();
-				}
-				
-			}
+		}
 
 
 				
@@ -218,15 +207,19 @@ Item {
 					groupsUpdate(1, group1);
 					}	
 				}
-				Label {
-					text: "chalkboard"
-					}
-				Label {
+				
+			    Label {
 					text: "Bart Simpson at the chalkboard"
 				}
 				Label {
 					text: "354"
 				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+				getSample(1);
+					}	
+		}
 			
 
 				// #2 - Disclaimers				
@@ -237,14 +230,18 @@ Item {
 						groupsUpdate(2, group2);
 					}	
 				}
-				Label {
-					text: "disclaimer"
-					}
+				
 				Label {
 					text: "Product & Service disclaimers"
 				}
 				Label {
 					text: "568"
+				}
+				Label {
+				text: "<a href=\"1\">Sample</a>"
+				onLinkActivated: {
+					getSample(2);
+						}	
 				}
 		
 
@@ -257,14 +254,17 @@ Item {
 			 		}	
 			 	}
 				Label {
-					text: "starwars"
-					}
-				Label {
-					text: "Star Wars quotations (original trilogy)"
+					text: "Star Wars quotations"
 				}
 				Label {
 					text: "118"
-					}
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(4);
+							}	
+				}
 
 				
 				// #5 - Computer Jokes
@@ -276,15 +276,18 @@ Item {
 					}	
 				}
 				Label {
-					text: "computers2"
-					}
-				Label {
-					text: "(Old) computer jokes"
+					text: "Old computer jokes"
 				}
 				Label {
 					text: "1790"
-				}
-				
+					}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(5);
+							}	
+						}				
+
 
 				// #6 - Humorists
 				CheckBox {
@@ -295,13 +298,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "humorists"
-					}
-				Label {
 					text: "Classic funny people like Mark Twain"
 				}
 				Label {
 					text: "360"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(6);
+							}	
 				}
 				
 
@@ -314,13 +320,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "perl"
-					}
-				Label {
-					text: "Perl and perl hackers"
+					text: "Perl and Larry Wall"
 				}
 				Label {
 					text: "544"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(7);
+							}	
 				}
 
 
@@ -333,13 +342,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "startrek"
-					}
-				Label {
 					text: "Star Trek (TOS) quotations"
 				}
 				Label {
-					text: "128"
+					text:  "128"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(8);
+					}	
 				}
 					
 
@@ -353,13 +365,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "science"
-					}
-				Label {
-					text: "Science jokes, long and short"
+					text: "Science jokes, long and short (1140)"
 				}
 				Label {
 					text: "1140"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(9);
+							}	
 				}
 					
 
@@ -372,13 +387,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "Oddball definitions"
-					}
-				Label {
 					text: "Unusual or funny definitions"
 				}
 				Label {
 					text: "2342"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(10);
+							}	
 				}
 
 
@@ -391,13 +409,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "hitchhiker"
-					}
-				Label {
 					text: "The Hitchhiker's Guide To The Galaxy"
 				}
 				Label {
 					text: "154"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(11);
+							}	
 				}
 					
 								
@@ -411,13 +432,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "work"
-					}
-				Label {
 					text: "Jokes, etc, about the workplace"
 				}
 				Label {
 					text: "1164"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(15);
+							}	
 				}
 
 
@@ -430,16 +454,19 @@ Item {
 						}	
 					}
 				Label {
-					text: "linux"
-					}
-				Label {
 					text: "Linux-themed messages and quotes"
 				}
 				Label {
 					text: "200"
 				}
-
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(17);
+							}	
+				}
 						
+
 				// #18 - Einstein
 				CheckBox {
 				id: group18
@@ -449,13 +476,16 @@ Item {
 					}	
 				}
 				Label {
-					text: "einsteins"
-					}
-				Label {
 					text: "Quotations from Albert Einstein"
 				}
 				Label {
 					text: "362"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(18);
+							}	
 				}
 
 
@@ -468,13 +498,16 @@ Item {
 						}	
 					}
 				Label {
-					text: "homer"
-					}
-				Label {
 					text: "Homer Simpson quotations"
 				}
 				Label {
 					text: "170"
+				}
+				Label {
+					text: "<a href=\"1\">Sample</a>"
+					onLinkActivated: {
+						getSample(19);
+							}	
 				}
 
 
@@ -482,6 +515,8 @@ Item {
 
 		 
 		function groupsUpdate(grp, box) {
+
+			var groupList;
 
 			if (plasmoid.configuration["firstRun"] == true) {
 				plasmoid.configuration["firstRun"] = false;
@@ -503,7 +538,7 @@ Item {
 				groupList.splice(splicePoint, 1);
 			}
 
-			groupString = groupList.join();
+			var groupString = groupList.join();
 
 			var configString = groupString;
 
