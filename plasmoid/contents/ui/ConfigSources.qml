@@ -26,6 +26,7 @@ Item {
 	property var display;
 	
 	property var groupString
+	property var activeGroups
 	property var modeCount: 0
 	property int sampleGroup: 0
 	property var grp;
@@ -52,7 +53,7 @@ Item {
 	property alias cfg_group17:	group17.checked
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
-	property string cfg_groupList: groupList;
+	property string cfg_activeGroups: activeGroups;
 	
 
 	// GROUP20	
@@ -250,7 +251,7 @@ Item {
 					id: group4
 					onClicked: {
 		 				plasmoid.configuration[cfg_group4] = !plasmoid.configuration[cfg_group4];
-			 			groupsUpdate(4, group3);
+			 			groupsUpdate(4, group4);
 			 		}	
 			 	}
 				Label {
@@ -516,14 +517,15 @@ Item {
 		 
 		function groupsUpdate(grp, box) {
 
-			var groupList;
+			
 
-			if (plasmoid.configuration["firstRun"] == true) {
-				plasmoid.configuration["firstRun"] = false;
-				groupList = [12];
+			if (plasmoid.configuration.firstRun == true) {
+				plasmoid.configuration.firstRun = false;
+				activeGroups = [12];
+				console.log(activeGroups);
 			} 
 			
-			if ((groupList.length == 1) && groupList.indexOf(grp) >= 0) {
+			if ((activeGroups.length == 1) && activeGroups.indexOf(grp) >= 0) {
 				box.checked = true;
 				noSourcesDialog.visible = true;
 				return false;
@@ -531,21 +533,19 @@ Item {
 			}
 
 
-			if (groupList.indexOf(grp) == -1) {
-				groupList.push(grp);
+			if (activeGroups.indexOf(grp) == -1) {
+				activeGroups.push(grp);
 			} else {
-				var splicePoint = groupList.indexOf(grp);
-				groupList.splice(splicePoint, 1);
+				var splicePoint = activeGroups.indexOf(grp);
+				activeGroups.splice(splicePoint, 1);
 			}
 
-			var groupString = groupList.join();
+			var configString = activeGroups.join();
 
-			var configString = groupString;
+			console.log("GroupString: " + configString);
 
-			console.log("GroupString: " + groupString);
-
-			plasmoid.configuration.groupList = groupString;
-			//plasmoid.configuration["cfg_savedList"] = groupList;
+			plasmoid.configuration.groupList = configString;
+			//plasmoid.configuration["cfg_savedList"] = activeGroups;
 		}
 
 
