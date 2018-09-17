@@ -7,5 +7,11 @@ ConfigModel {
         source: "ConfigSources.qml"
     }
 
+    ConfigCategory {
+    	name: "Themes"
+    	icon: applications-graphics
+    	source: "ConfigThemes.qml"
+    }
+
     
 }

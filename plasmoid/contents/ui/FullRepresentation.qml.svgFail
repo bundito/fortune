@@ -1,0 +1,62 @@
+import QtQuick 2.7
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.extras 2.0 as PlasmaExtras
+import QtQuick.Controls 1.4
+import QtQuick.Layouts 1.1 as Layout
+import QtQuick.Dialogs 1.3 as Dialogs
+import QtGraphicalEffects 1.0
+
+Item {
+
+	id: rootness
+
+	width: 500
+	height: 250
+
+	Image {
+		id: bgBlend
+		source: Qt.resolvedUrl("../images/background.svg")
+		sourceSize.width: parent.width
+		sourceSize.height: parent.height
+	}
+
+	ColorOverlay {
+		id: bgColorOverLay
+		anchors.fill: bgBlend
+		source: bgBlend
+		color: "green"
+	}
+
+	Label {
+		text: "This is a test"
+		anchors.centerIn: bgBlend
+
+	}
+
+	Image {
+		id: fgBlend
+		source: Qt.resolvedUrl("../images/border.svg")
+		sourceSize.width: rootness.width
+		sourceSize.height: rootness.height
+
+
+	}
+
+/*	ColorOverlay {
+		id: borderColorOverlay
+		anchors.fill: bgBlend
+		source: bgBlend
+		color: "pink"/	}
+}
+*/
+
+
+	Colorize {
+		anchors.fill: bgColorOverLay
+		source: bgColorOverLay
+		hue: 0.0
+		saturation: 0.5
+		lightness: -0.2
+	}
+}

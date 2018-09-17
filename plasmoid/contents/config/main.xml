@@ -117,6 +117,23 @@
     <default>true</default>
   </entry>
 
+
+  <entry name="textColor" type="Color">
+    <label>message text color</label>
+    <default>"black"</default>
+  </entry>
+
+   <entry name="borderColor" type="Color">
+    <label>border color</label>
+    <default>theme.highlightColor</default>
+  </entry>
+
+  <emtry name="backgroundColor" type="Color">
+    <label>background color</label>
+    <default>theme.backgroundColor</default>
+  </emtry>
+
+
 </group>
 
 
