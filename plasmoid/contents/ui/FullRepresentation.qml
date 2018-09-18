@@ -32,8 +32,8 @@ Item {
 			
 			id: bgImage
 			anchors.centerIn: baseItem
-			width: baseItem.width
-			height: baseItem.height
+			Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
+			Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
 			color: plasmoid.configuration.borderColor
 			
 				}
@@ -48,42 +48,31 @@ Item {
 
 		}	
 
-//		}
-
-
-
-
-/*
 
 			Label {
-				x: 2
-				y: 2
-				z:100
 				id: textColor
 				padding: 1
 				
 				anchors.centerIn: foreground
 				
-				//color: Plasma.theme.TextColor
+				color: plasmoid.configuration.textColor
 				 
 				font.family: "Courier"
 				//color: txtColor
 				//color: textColor
-				color: "#ffffff".color
 				text: fortune
 			}
 
 				MouseArea {
 					anchors.fill: textColor
 					onClicked: {
-						console.log("txtColor " + txtColor);
 					   plasmoid.expanded = !plasmoid.expanded;
 					   //cookieIcon = Qt.resolvedUrl("../images/fortune-cookie.png")
 					  
 				}
 
 			}
-*/
+
 
 	}	
 

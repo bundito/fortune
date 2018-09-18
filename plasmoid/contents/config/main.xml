@@ -118,9 +118,14 @@
   </entry>
 
 
+  <entry name="useThemeColors" type="bool">
+    <label>use theme colors toggle</label>
+    <default>true</default>
+  </entry>
+
   <entry name="textColor" type="Color">
     <label>message text color</label>
-    <default>"#ffffff"</default>
+    <default>#ffffff</default>
   </entry>
 
    <entry name="borderColor" type="Color">

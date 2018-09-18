@@ -11,16 +11,36 @@ import QtQuick.Dialogs 1.3 as Dialogs
 Item {
 
 
-	property int sampleSquare: 50
+	property int sampleWidth: 50
+	property int sampleHeight: 25
+
+
+	
+
+
+
 
 	Layout.GridLayout {
 		columns: 2
 	
+	Layout.ColumnLayout {
+		id: leftColumn
 
-	
-	Layout.ColumnLayout{
-		
+		anchors.top: parent.top
+
 		Layout.RowLayout {
+			CheckBox {
+		id: overrideTheme
+	}
+
+	Label {
+		text: "Override Theme Colors"
+	}
+		}
+
+		Layout.RowLayout {
+			id: topRow
+			anchors.right: parent.right
 
 		Label {
 			text: "Background"
@@ -29,8 +49,8 @@ Item {
 		Rectangle {
 			id: bgColorSquare
 	
-			height: sampleSquare
-			width: sampleSquare
+			height: sampleHeight
+			width: sampleWidth
 			color: theme.backgroundColor
 			border.color: theme.highlightColor
 			
@@ -43,39 +63,45 @@ Item {
 		}
 
 		Layout.RowLayout {
+			anchors.right: parent.right
 
 		Label {
 			text: "Text"
 		}
 
 		Rectangle {
-			id: textSquare
+			id: textColorSquare
 			color: theme.textColor
-			height: sampleSquare
-			width: sampleSquare
+			height: sampleHeight
+			width: sampleWidth
 			border.color: theme.highlightColor
 		}
 
 		MouseArea {
-			anchors.fill: textSquare
-			onClicked: colorDialog.visible = true;
+			anchors.fill: textColorSquare
+			onClicked: textColorDialog.visible = true;
 		}
 
 	}
 
 		Layout.RowLayout {
-
+			anchors.right: parent.right
 
 		Label {
 			text: "Border"
 		}
 
 		Rectangle {
-			id: borderSquare
+			id: borderColorSquare
 			color: theme.highlistColor
-			height: sampleSquare
-			width: sampleSquare
+			height: sampleHeight
+			width: sampleWidth
 			border.color: theme.highlightColor
+			}
+
+		MouseArea {
+			anchors.fill: borderColorSquare
+			onClicked: borderColorDialog.visible = true;
 			}
 		}
 	}
@@ -84,7 +110,8 @@ Item {
 // END OF LEFT COLUMN
 
 	Layout.ColumnLayout {
-		
+		anchors.top: topRow.top
+					
 
 		Layout.RowLayout {
 
@@ -93,15 +120,18 @@ Item {
 			width: 250
 			height: 150
 
-			color: colorDialog.color
-			border.color: borderColorDialog.color
+			color: bgColorSquare.color
+			border.color: borderColorSquare.color
 
 		}
 
 		Label {
 			id: exampleLabel
-			//anchors.centerIn: goldenExample
-			text: "test"
+			anchors.centerIn: goldenExample
+			color: textColorSquare.color
+			font.pointSize: 10.0
+			font.family: "Courier"
+			text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
 			//text:"test"
 		}
 	}
@@ -110,12 +140,13 @@ Item {
 	// -------------------------------------------
 	// TODO: I'm sure I could make just one ColorDialog, but I'm tired.
 
+
+	// Background
 	Dialogs.ColorDialog {
 		id: colorDialog
 		title: "Pick A Color"
 		currentColor: theme.backgroundColor
 		visible: false;
-
 		onAccepted: {
 			bgColorSquare.color = colorDialog.color;
 			colorDialog.visible = false;
@@ -123,12 +154,12 @@ Item {
 		}
 	}
 
+	// Text
 	Dialogs.ColorDialog {
 		id: textColorDialog
 		title: "Pick A Color"
 		currentColor: theme.textColor
 		visible: false;
-
 		onAccepted: {
 			textColorSquare.color = textColorDialog.color;
 			textColorDialog.visible = false;
@@ -136,12 +167,12 @@ Item {
 	}
 	}
 
+	// Border
 	Dialogs.ColorDialog {
 		id: borderColorDialog
 		title: "Pick A Color"
 		currentColor: theme.highlightColor
 		visible: false;
-
 		onAccepted: {
 			borderColorSquare.color = borderColorDialog.color;
 			borderColorDialog.visible = false;

@@ -8,8 +8,8 @@ ConfigModel {
     }
 
     ConfigCategory {
-    	name: "Time Settings"
-    	icon: applications-graphics
+    	name: "Color Settings"
+    	icon: "color-management"
     	source: "ConfigColors.qml"
     }
 
