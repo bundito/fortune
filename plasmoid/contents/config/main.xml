@@ -120,17 +120,17 @@
 
   <entry name="textColor" type="Color">
     <label>message text color</label>
-    <default>"black"</default>
+    <default>"#ffffff"</default>
   </entry>
 
    <entry name="borderColor" type="Color">
     <label>border color</label>
-    <default>theme.highlightColor</default>
+    <default>#ff6ab47e</default>
   </entry>
 
   <emtry name="backgroundColor" type="Color">
     <label>background color</label>
-    <default>theme.backgroundColor</default>
+    <default>#77e843</default>
   </emtry>
 
 

@@ -1,5 +1,5 @@
 import QtQuick 2.7
-import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.core 2.0 as Plasma
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 1.4
@@ -11,84 +11,70 @@ import QtGraphicalEffects 1.0
 Item {
 
 
-	property alias cfg_textColor: fortuneLabel.color;
+//	property var txtColorNew: plasmoid.configuration.textColor;
+//property var backgroundColor: plasmoid.configuration.backgroundColor.color
+//	property var borderColor: plasmoid.configuration.borderColor;
 	
-	property alias cfg_borderColor: bgImageColor.color;
-	property alias cfg_backgroundColor: bgColorOverLay.color
+//	property alias cfg_borderColor: foreground.color;
+//	property alias cfg_borderColor: bgImage.color
+	//property alias cfg_textColor: textColor.color;
+
 	
 
 	id: baseItem
 	Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
 	Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
 
-	Image {
+
+	//layer.enabled: true;
+
+	Rectangle {
+			
 			id: bgImage
-			anchors.centerIn: parent
-			source: Qt.resolvedUrl("../images/background.svg")
-			sourceSize.width: parent.width 
-			sourceSize.height: parent.height
+			anchors.centerIn: baseItem
+			width: baseItem.width
+			height: baseItem.height
+			color: plasmoid.configuration.borderColor
+			
 				}
 
-	ColorOverlay {
-			id: bgImageColor
-			
-			anchors.fill: bgImage
-			source: bgImage
-			
-	}
-
-	
-	
-
-
-		
-		
-		
-
-
-		Image {
+	Rectangle {
+			opacity: 1.0
 			id: foreground
-			//anchors.centerIn: bgImage
-			source: Qt.resolvedUrl("../images/background.svg")
+			anchors.centerIn: bgImage
 			width: bgImage.width - 4
-			height: bgImage.height - 4
-		}
+			height: bgImage.height  -4
+			color: plasmoid.configuration.backgroundColor
 
-		ColorOverlay {
-				id: bgColorOverLay
-				
-				//anchors.fill: foreground
-				source: foreground
-				
-				
-			}
+		}	
 
-			Blend {
-		 anchors.fill: bgImage
-        source: bgImage
-        foregroundSource: foreground
-        mode: "subtract"
-    }
+//		}
 
 
 
 
+/*
 
 			Label {
-				id: fortuneLabel
+				x: 2
+				y: 2
+				z:100
+				id: textColor
 				padding: 1
 				
-				anchors.centerIn: parent
+				anchors.centerIn: foreground
 				
+				//color: Plasma.theme.TextColor
 				 
 				font.family: "Courier"
 				//color: txtColor
 				//color: textColor
+				color: "#ffffff".color
 				text: fortune
 			}
 
 				MouseArea {
-					anchors.fill: fortuneLabel
+					anchors.fill: textColor
 					onClicked: {
 						console.log("txtColor " + txtColor);
 					   plasmoid.expanded = !plasmoid.expanded;
@@ -97,7 +83,7 @@ Item {
 				}
 
 			}
-
+*/
 
 	}	
 

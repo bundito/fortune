@@ -8,9 +8,9 @@ ConfigModel {
     }
 
     ConfigCategory {
-    	name: "Themes"
+    	name: "Time Settings"
     	icon: applications-graphics
-    	source: "ConfigThemes.qml"
+    	source: "ConfigColors.qml"
     }
 
     
