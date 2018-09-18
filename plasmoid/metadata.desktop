@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Fortune
 Comment=Daily message with many options
-Icon=/contents/images/fortune-cookie.svg
+Icon="/plasmoid/contents/images/fortune-cookie.svg"
 Type=Service
 
 X-KDE-ParentApp=

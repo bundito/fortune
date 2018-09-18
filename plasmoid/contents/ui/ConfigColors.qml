@@ -5,24 +5,30 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1 as Layout
 import QtQuick.Dialogs 1.3 as Dialogs
+import org.kde.kquickcontrols 2.0 as KQC
+
 
 
 
 Item {
 
-	property alias cfg_useThemeColors: !overrideTheme.checked
 
-	property var overriding: plasmoid.configuration.useThemeColors
+
 
 	property int sampleWidth: 50
 	property int sampleHeight: 25
 
+	property alias cfg_backgroundColor: bgColorButton.color
+	property alias cfg_borderColor: borderColorButton.color
+	property alias cfg_textColor: textColorButton.color
 
 	
 
 	Layout.GridLayout {
 		id: overrideLabel
+		
 		columns: 2
+		
 
 		CheckBox {
 			id: overrideTheme
@@ -30,17 +36,27 @@ Item {
 
 		Label {
 			text: "Override Theme Colors"
-			color: {
-				if (overriding) ? "#white" : "#a6a6a6";
-			}
+
 		}
 
+
 }
+
+	Rectangle {
+		height: 50
+		visible: false
+	}
+
 		Layout.GridLayout {
 			columns: 2
+			columnSpacing: 20
 		
 		Layout.ColumnLayout {
 			id: leftColumn
+
+			spacing: 10
+
+			
 
 			anchors.top: overrideLabel.top
 
@@ -54,21 +70,14 @@ Item {
 				text: "Background"
 			}
 
-			Rectangle {
-				id: bgColorSquare
-		
-				height: sampleHeight
-				width: sampleWidth
-				color: theme.backgroundColor
-				border.color: theme.highlightColor
-				
-				}
+			
+			KQC.ColorButton {
+				id: bgColorButton
 
-				MouseArea {
-					anchors.fill: bgColorSquare;
-					onClicked: colorDialog.visible = true;
 				}
-			}
+			   	}
+				
+			
 
 			Layout.RowLayout {
 				anchors.right: parent.right
@@ -77,17 +86,9 @@ Item {
 				text: "Text"
 			}
 
-			Rectangle {
-				id: textColorSquare
-				color: theme.textColor
-				height: sampleHeight
-				width: sampleWidth
-				border.color: theme.highlightColor
-			}
-
-			MouseArea {
-				anchors.fill: textColorSquare
-				onClicked: textColorDialog.visible = true;
+			
+			KQC.ColorButton {
+				id: textColorButton
 			}
 
 		}
@@ -99,22 +100,13 @@ Item {
 				text: "Border"
 			}
 
-			Rectangle {
-				id: borderColorSquare
-				color: theme.highlistColor
-				height: sampleHeight
-				width: sampleWidth
-				border.color: theme.highlightColor
-				}
-
-			MouseArea {
-				anchors.fill: borderColorSquare
-				onClicked: borderColorDialog.visible = true;
-				}
+			KQC.ColorButton {
+				id: borderColorButton
 			}
+
 		}
 		
-
+}
 	// END OF LEFT COLUMN
 
 		Layout.ColumnLayout {
@@ -145,61 +137,10 @@ Item {
 		}
 	}
 
-		// -------------------------------------------
-		// TODO: I'm sure I could make just one ColorDialog, but I'm tired.
 
 
-		// Background
-		Dialogs.ColorDialog {
-			id: colorDialog
-			title: "Pick A Color"
-			currentColor: theme.backgroundColor
-			visible: false;
-			onAccepted: {
-				bgColorSquare.color = colorDialog.color;
-				colorDialog.visible = false;
-				//slowdown.running = true;
-				plasmoid.configuration.backgroundColor = colorDialog.color;
-			}
-		}
 
-		// Text
-		Dialogs.ColorDialog {
-			id: textColorDialog
-			title: "Pick A Color"
-			currentColor: theme.textColor
-			visible: false;
-			onAccepted: {
-				textColorSquare.color = textColorDialog.color;
-				textColorDialog.visible = false;
-				plasmoid.configuration.textColor = textColorDialog.color;
-		}
-		}
 }
-	// Border
-	Dialogs.ColorDialog {
-		id: borderColorDialog
-		title: "Pick A Color"
-		currentColor: theme.highlightColor
-		visible: false;
-		onAccepted: {
-			borderColorSquare.color = borderColorDialog.color;
-			borderColorDialog.visible = false;
-			//slowdown.running = true;
-			plasmoid.configuration.borderColor = borderColorDialog.color;
-	}
-}
-
-	Timer {
-			id: slowdown
-	        interval: 100
-	        running: false
-	        repeat: false
-	        onTriggered:{
-	       		sampleBox.visible = true;
-	   }
-	}
-
 
 
 }
