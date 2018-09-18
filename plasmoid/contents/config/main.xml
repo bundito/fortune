@@ -133,10 +133,10 @@
     <default>#ff6ab47e</default>
   </entry>
 
-  <emtry name="backgroundColor" type="Color">
+  <entry name="backgroundColor" type="Color">
     <label>background color</label>
     <default>#77e843</default>
-  </emtry>
+  </entry>
 
 
 </group>

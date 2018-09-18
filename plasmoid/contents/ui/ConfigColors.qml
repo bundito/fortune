@@ -10,6 +10,9 @@ import QtQuick.Dialogs 1.3 as Dialogs
 
 Item {
 
+	property alias cfg_useThemeColors: !overrideTheme.checked
+
+	property var overriding: plasmoid.configuration.useThemeColors
 
 	property int sampleWidth: 50
 	property int sampleHeight: 25
@@ -17,156 +20,162 @@ Item {
 
 	
 
-
-
-
 	Layout.GridLayout {
+		id: overrideLabel
 		columns: 2
-	
-	Layout.ColumnLayout {
-		id: leftColumn
 
-		anchors.top: parent.top
-
-		Layout.RowLayout {
-			CheckBox {
-		id: overrideTheme
-	}
-
-	Label {
-		text: "Override Theme Colors"
-	}
+		CheckBox {
+			id: overrideTheme
 		}
-
-		Layout.RowLayout {
-			id: topRow
-			anchors.right: parent.right
 
 		Label {
-			text: "Background"
+			text: "Override Theme Colors"
+			color: {
+				if (overriding) ? "#white" : "#a6a6a6";
+			}
 		}
 
-		Rectangle {
-			id: bgColorSquare
-	
-			height: sampleHeight
-			width: sampleWidth
-			color: theme.backgroundColor
-			border.color: theme.highlightColor
+}
+		Layout.GridLayout {
+			columns: 2
+		
+		Layout.ColumnLayout {
+			id: leftColumn
+
+			anchors.top: overrideLabel.top
+
 			
+
+			Layout.RowLayout {
+				id: topRow
+				anchors.right: parent.right
+
+			Label {
+				text: "Background"
+			}
+
+			Rectangle {
+				id: bgColorSquare
+		
+				height: sampleHeight
+				width: sampleWidth
+				color: theme.backgroundColor
+				border.color: theme.highlightColor
+				
+				}
+
+				MouseArea {
+					anchors.fill: bgColorSquare;
+					onClicked: colorDialog.visible = true;
+				}
+			}
+
+			Layout.RowLayout {
+				anchors.right: parent.right
+
+			Label {
+				text: "Text"
+			}
+
+			Rectangle {
+				id: textColorSquare
+				color: theme.textColor
+				height: sampleHeight
+				width: sampleWidth
+				border.color: theme.highlightColor
 			}
 
 			MouseArea {
-				anchors.fill: bgColorSquare;
-				onClicked: colorDialog.visible = true;
+				anchors.fill: textColorSquare
+				onClicked: textColorDialog.visible = true;
+			}
+
+		}
+
+			Layout.RowLayout {
+				anchors.right: parent.right
+
+			Label {
+				text: "Border"
+			}
+
+			Rectangle {
+				id: borderColorSquare
+				color: theme.highlistColor
+				height: sampleHeight
+				width: sampleWidth
+				border.color: theme.highlightColor
+				}
+
+			MouseArea {
+				anchors.fill: borderColorSquare
+				onClicked: borderColorDialog.visible = true;
+				}
+			}
+		}
+		
+
+	// END OF LEFT COLUMN
+
+		Layout.ColumnLayout {
+			anchors.top: leftColumn.top
+						
+
+			Layout.RowLayout {
+
+			Rectangle {
+				id: goldenExample
+				width: 250
+				height: 150
+
+				color: plasmoid.configuration.backgroundColor
+				border.color:plasmoid.configuration.borderColor
+
+			}
+
+			Label {
+				id: exampleLabel
+				anchors.centerIn: goldenExample
+				color: plasmoid.configuration.textColor
+				font.pointSize: 10.0
+				font.family: "Courier"
+				text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
+				//text:"test"
+			}
+		}
+	}
+
+		// -------------------------------------------
+		// TODO: I'm sure I could make just one ColorDialog, but I'm tired.
+
+
+		// Background
+		Dialogs.ColorDialog {
+			id: colorDialog
+			title: "Pick A Color"
+			currentColor: theme.backgroundColor
+			visible: false;
+			onAccepted: {
+				bgColorSquare.color = colorDialog.color;
+				colorDialog.visible = false;
+				//slowdown.running = true;
+				plasmoid.configuration.backgroundColor = colorDialog.color;
 			}
 		}
 
-		Layout.RowLayout {
-			anchors.right: parent.right
-
-		Label {
-			text: "Text"
+		// Text
+		Dialogs.ColorDialog {
+			id: textColorDialog
+			title: "Pick A Color"
+			currentColor: theme.textColor
+			visible: false;
+			onAccepted: {
+				textColorSquare.color = textColorDialog.color;
+				textColorDialog.visible = false;
+				plasmoid.configuration.textColor = textColorDialog.color;
 		}
-
-		Rectangle {
-			id: textColorSquare
-			color: theme.textColor
-			height: sampleHeight
-			width: sampleWidth
-			border.color: theme.highlightColor
 		}
-
-		MouseArea {
-			anchors.fill: textColorSquare
-			onClicked: textColorDialog.visible = true;
-		}
-
-	}
-
-		Layout.RowLayout {
-			anchors.right: parent.right
-
-		Label {
-			text: "Border"
-		}
-
-		Rectangle {
-			id: borderColorSquare
-			color: theme.highlistColor
-			height: sampleHeight
-			width: sampleWidth
-			border.color: theme.highlightColor
-			}
-
-		MouseArea {
-			anchors.fill: borderColorSquare
-			onClicked: borderColorDialog.visible = true;
-			}
-		}
-	}
-	
-
-// END OF LEFT COLUMN
-
-	Layout.ColumnLayout {
-		anchors.top: topRow.top
-					
-
-		Layout.RowLayout {
-
-		Rectangle {
-			id: goldenExample
-			width: 250
-			height: 150
-
-			color: bgColorSquare.color
-			border.color: borderColorSquare.color
-
-		}
-
-		Label {
-			id: exampleLabel
-			anchors.centerIn: goldenExample
-			color: textColorSquare.color
-			font.pointSize: 10.0
-			font.family: "Courier"
-			text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
-			//text:"test"
-		}
-	}
 }
-
-	// -------------------------------------------
-	// TODO: I'm sure I could make just one ColorDialog, but I'm tired.
-
-
-	// Background
-	Dialogs.ColorDialog {
-		id: colorDialog
-		title: "Pick A Color"
-		currentColor: theme.backgroundColor
-		visible: false;
-		onAccepted: {
-			bgColorSquare.color = colorDialog.color;
-			colorDialog.visible = false;
-			plasmoid.configuration.backgroundColor = colorDialog.color;
-		}
-	}
-
-	// Text
-	Dialogs.ColorDialog {
-		id: textColorDialog
-		title: "Pick A Color"
-		currentColor: theme.textColor
-		visible: false;
-		onAccepted: {
-			textColorSquare.color = textColorDialog.color;
-			textColorDialog.visible = false;
-			plasmoid.configuration.textColor = textColorDialog.color;
-	}
-	}
-
 	// Border
 	Dialogs.ColorDialog {
 		id: borderColorDialog
@@ -176,13 +185,23 @@ Item {
 		onAccepted: {
 			borderColorSquare.color = borderColorDialog.color;
 			borderColorDialog.visible = false;
+			//slowdown.running = true;
 			plasmoid.configuration.borderColor = borderColorDialog.color;
 	}
 }
 
+	Timer {
+			id: slowdown
+	        interval: 100
+	        running: false
+	        repeat: false
+	        onTriggered:{
+	       		sampleBox.visible = true;
+	   }
+	}
+
 
 
 }
 
 
-}
