@@ -36,6 +36,7 @@ Item {
 
 
 		Layout.GridLayout {
+			id: colorControls
 			columns: 2
 			columnSpacing: 20
 
@@ -128,12 +129,23 @@ Item {
 		}
 	}
 
+	Layout.RowLayout {
+		anchors.top: colorControls.bottom
 
+		Button {
+
+		id: resetButton
+
+		text: "Reset to Theme Colors" 
+
+		}
+
+	}
 
 
 }
-
-
 }
+
+
 
 
