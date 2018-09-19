@@ -12,12 +12,6 @@ import org.kde.kquickcontrols 2.0 as KQC
 
 Item {
 
-
-
-
-	property int sampleWidth: 50
-	property int sampleHeight: 25
-
 	property alias cfg_backgroundColor: bgColorButton.color
 	property alias cfg_borderColor: borderColorButton.color
 	property alias cfg_textColor: textColorButton.color
@@ -38,18 +32,15 @@ Item {
 			text: "Override Theme Colors"
 
 		}
-
-
 }
 
-	Rectangle {
-		height: 50
-		visible: false
-	}
 
 		Layout.GridLayout {
 			columns: 2
 			columnSpacing: 20
+
+			anchors.top: overrideLabel.bottom
+
 		
 		Layout.ColumnLayout {
 			id: leftColumn

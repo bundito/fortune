@@ -1,1 +1,0 @@
-SELECT message FROM fortunes WHERE group_id IN (undefined) ORDER BY RANDOM() LIMIT 1
