@@ -4,13 +4,13 @@ ConfigModel {
     ConfigCategory {
         name: "Fortune Sources"
         icon: "accessories-dictionary"
-        source: "ConfigSources.qml"
+        source: "config/ConfigSources.qml"
     }
 
     ConfigCategory {
     	name: "Color Settings"
     	icon: "color-management"
-    	source: "ConfigColors.qml"
+    	source: "config/ConfigColors.qml"
     }
 
     
