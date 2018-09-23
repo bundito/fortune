@@ -7,219 +7,164 @@ import QtQuick.Layouts 1.1 as Layout
 import QtQuick.Dialogs 1.3 as Dialogs
 
 
-
 Item {
-
 	
+		property alias cfg_themeColors: themeButton.checked;
+		property alias cfg_bwColors: bwButton.checked;
+		property alias cfg_greenColors: greenButton.checked;
+		property alias cfg_amberColors: amberButton.checked;
 
-	property var overriding: plasmoid.configuration.useThemeColors
+		property var textColor
+		property var backgroundColor
 
-	property int sampleWidth: 50
-	property int sampleHeight: 25
+		
 
+		function changeColors(scheme) {
 
-	
+		switch(scheme) {
+			case "theme":
+				plasmoid.configuration.backgroundColor = theme.backgroundColor;
+				plasmoid.configuration.textColor = theme.textColor;
+				
+				break;
 
-	Layout.GridLayout {
-		id: overrideLabel
-		columns: 2
+			case "bw":
+				plasmoid.configuration.backgroundColor = "#000000";
+				plasmoid.configuration.textColor = "#ffffff";
+				
+				break;
 
-		CheckBox {
-			id: overrideTheme
+			case "green":
+				plasmoid.configuration.backgroundColor = "#000000";
+				plasmoid.configuration.textColor = "#51ce3d";
+				
+				break;
+
+			case "amber":
+				plasmoid.configuration.backgroundColor = "#000000";
+				plasmoid.configuration.textColor = "#c6ba4f";
+				
+				break;
 		}
 
-		Label {
-			text: "Override Theme Colors"
-			
+		return;
+
+	}
+		
+		Timer {
+			id: slowdown
+			interval: 250
+			running: false
+			repeat: false
 		}
-}
+		
 
 		Layout.GridLayout {
 			id: colorGrid
 			columns: 2
-		
-		Layout.ColumnLayout {
-			id: leftColumn
-
-			anchors.top: overrideLabel.top
-
 			
 
-			Layout.RowLayout {
-				id: topRow
-				anchors.right: parent.right
+		Layout.ColumnLayout {
+			anchors.top: parent.top
+			
+			ExclusiveGroup { id: colorScheme }
 
-			Label {
-				text: "Background"
-			}
-
-			Rectangle {
-				id: bgColorSquare
-		
-				height: sampleHeight
-				width: sampleWidth
-				color: plasmoid.configuration.backgroundColor
-				border.color: theme.highlightColor
-				
+			RadioButton {
+				id: themeButton
+				text: "Theme Colors"
+				exclusiveGroup: colorScheme
+				onCheckedChanged: {
+					slowdown.running = true;
+					changeColors("theme");
+					
 				}
 
-				MouseArea {
-					anchors.fill: bgColorSquare;
-					onClicked: colorDialog.visible = true;
+			}
+
+			RadioButton {
+				id: bwButton
+				text: "Black & White Terminal"
+				exclusiveGroup: colorScheme
+				onCheckedChanged: {
+					slowdown.running = true;
+					exampleLabel.color = "#ffffff";
+					goldenExample.color = "#000000";
+					changeColors("bw");
+				}
+
+
+			}
+
+			RadioButton {
+				id: greenButton
+				text: "Green Terminal"
+				exclusiveGroup: colorScheme
+				onCheckedChanged: {
+					slowdown.running = true;
+					changeColors("green");
 				}
 			}
 
-			Layout.RowLayout {
-				anchors.right: parent.right
-
-			Label {
-				text: "Text"
-			}
-
-			Rectangle {
-				id: textColorSquare
-				color: plasmoid.configuration.textColor
-				height: sampleHeight
-				width: sampleWidth
-				border.color: theme.highlightColor
-			}
-
-			MouseArea {
-				anchors.fill: textColorSquare
-				onClicked: textColorDialog.visible = true;
-			}
-
-		}
-
-			Layout.RowLayout {
-				anchors.right: parent.right
-
-			Label {
-				text: "Border"
-			}
-
-			Rectangle {
-				id: borderColorSquare
-				color: plasmoid.configuration.borderColor
-				height: sampleHeight
-				width: sampleWidth
-				border.color: theme.highlightColor
-				}
-
-			MouseArea {
-				anchors.fill: borderColorSquare
-				onClicked: borderColorDialog.visible = true;
+			RadioButton {
+				id: amberButton
+				text: "Amber Terminal"
+				exclusiveGroup: colorScheme
+				onCheckedChanged: {
+					slowdown.running = true;
+					changeColors("amber");
 				}
 			}
+
+
+			
 		}
 		
 
 	// END OF LEFT COLUMN
 
 		Layout.ColumnLayout {
-			anchors.top: leftColumn.top
+			
 						
 
-			Layout.RowLayout {
+			
 
-			Rectangle {
-				id: goldenExample
-				width: 250
-				height: 150
+			
 
-				color: plasmoid.configuration.backgroundColor
-				border.color:plasmoid.configuration.borderColor
+				Rectangle {
+					id: goldenExample
+					width: 250
+					height: 150
+					onColorChanged: {
+						console.log("bg changed" + goldenExample.color);
+					}
+					color: plasmoid.configure.backgroundColor
+					
+					
 
+					
+						}
+
+				Label {
+					id: exampleLabel
+					anchors.centerIn: goldenExample
+					color: plasmoid.configuration.textColor
+					font.pointSize: 10.0
+					font.family: "Courier"
+					
+					text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
+					
+				}
 			}
+			
+				}
+			
 
-			Label {
-				id: exampleLabel
-				anchors.centerIn: goldenExample
-				color: plasmoid.configuration.textColor
-				font.pointSize: 10.0
-				font.family: "Courier"
-				text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
-				//text:"test"
-			}
-		}
-	
-}
+		
 
-Layout.RowLayout {
-	
-	anchors.top: colorGrid.bottom
-	
 
-	Button {
-		text: "Revert to Theme Colors"
-		onClicked: {
-			bgColorSquare.color = theme.backgroundColor;
-			plasmoid.configuration.backgroundColor = theme.backgroundColor
-
-			textColorSquare.color = theme.textColor;
-			plasmoid.configuration.textColor = theme.textColor;
-
-			borderColorSquare.color = theme.highlightColor;
-			plasmoid.configuration.borderColor = theme.highlightColor;
-		}
 	}
-}
-
-}
 
 
-
-
-
-
-		// -------------------------------------------
-		// TODO: I'm sure I could make just one ColorDialog, but I'm tired.
-
-
-		// Background
-		Dialogs.ColorDialog {
-			id: colorDialog
-			title: "Pick A Color"
-			currentColor: theme.backgroundColor
-			visible: false;
-			onAccepted: {
-				bgColorSquare.color = colorDialog.color;
-				colorDialog.visible = false;
-				//slowdown.running = true;
-				plasmoid.configuration.backgroundColor = colorDialog.color;
-			}
-		}
-
-		// Text
-		Dialogs.ColorDialog {
-			id: textColorDialog
-			title: "Pick A Color"
-			currentColor: theme.textColor
-			visible: false;
-			onAccepted: {
-				textColorSquare.color = textColorDialog.color;
-				textColorDialog.visible = false;
-				plasmoid.configuration.textColor = textColorDialog.color;
-		}
-		}
-
-	// Border
-	Dialogs.ColorDialog {
-		id: borderColorDialog
-		title: "Pick A Color"
-		currentColor: theme.highlightColor
-		visible: false;
-		onAccepted: {
-			borderColorSquare.color = borderColorDialog.color;
-			borderColorDialog.visible = false;
-			//slowdown.running = true;
-			plasmoid.configuration.borderColor = borderColorDialog.color;
-	}
-}
-
-	
-
-}
 
 
 

@@ -125,7 +125,7 @@
 
   <entry name="textColor" type="Color">
     <label>message text color</label>
-    <default>#ffffff</default>
+    <default>#000000</default>
   </entry>
 
    <entry name="borderColor" type="Color">
@@ -135,9 +135,28 @@
 
   <entry name="backgroundColor" type="Color">
     <label>background color</label>
-    <default>#77e843</default>
+    <default>#ffffff</default>
   </entry>
 
+  <entry name="themeColors" type="bool">
+    <label>theme color scheme</label>
+    <default>true</default>
+  </entry>
+
+  <entry name="bwColors" type="bool">
+    <label>theme color scheme</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="greenColors" type="bool">
+    <label>theme color scheme</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="amberColors" type="bool">
+    <label>theme color scheme</label>
+    <default>false</default>
+  </entry>
 
 </group>
 

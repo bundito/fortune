@@ -25,8 +25,7 @@ Item {
 			Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
 			Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
 			color: plasmoid.configuration.backgroundColor
-			border.color:plasmoid.configuration.borderColor
-			border.width: 2
+			
 			
 				}
 
@@ -39,7 +38,7 @@ Item {
 				anchors.centerIn: baseItem
 				
 				color: plasmoid.configuration.textColor
-				 
+				 font.pointSize: 10
 				font.family: "Courier"
 				//color: txtColor
 				//color: textColor
@@ -55,6 +54,8 @@ Item {
 				}
 
 			}
+
+			
 
 
 	}	
