@@ -31,45 +31,32 @@ Item {
 				plasmoid.configuration.textColor = theme.textColor;
 				exampleLabel.color = theme.textColor;
 				goldenExample.color = theme.backgroundColor;
-				//themeButton.checked = true;
 		} else if (changeColors == "bw") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#ffffff";
 				exampleLabel.color = "white";
 				goldenExample.color = "black";
-				//bwButton.checked = true;
 		} else if (changeColors == "green") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#51ce3d";
-				exampleLabel.color = "green";
+				exampleLabel.color = "#51ce3d";
 				goldenExample.color = "black";
-				//greenButton.checked = true;
 		} else if (changeColors == "amber") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#c6ba4f";
-				exampleLabel.color = "red";
+				exampleLabel.color = "#c6ba4f";
 				goldenExample.color = "black";
-				//amberButton.checked = true;
 				}
 
 			return;
 		}
 
-		
-
 	
-		
-		Timer {
-			id: slowdown
-			interval: 250
-			running: false
-			repeat: false
-		}
-		
 
 		Layout.GridLayout {
 			id: colorGrid
 			columns: 2
+			columnSpacing: 25
 
 			
 
@@ -139,16 +126,8 @@ Item {
 				
 				}
 
-	
-
 		}
 
-				
-				
-					
-
-			
-		
 		
 
 	// END OF LEFT COLUMN
@@ -161,6 +140,8 @@ Item {
 					id: goldenExample
 					width: 250
 					height: 150
+					border.width: 1
+					border.color: exampleLabel.color
 		
 					
 						}
