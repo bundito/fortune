@@ -31,25 +31,25 @@ Item {
 				plasmoid.configuration.textColor = theme.textColor;
 				exampleLabel.color = theme.textColor;
 				goldenExample.color = theme.backgroundColor;
-				themeButton.checked = true;
+				//themeButton.checked = true;
 		} else if (changeColors == "bw") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#ffffff";
 				exampleLabel.color = "white";
 				goldenExample.color = "black";
-				bwButton.checked = true;
+				//bwButton.checked = true;
 		} else if (changeColors == "green") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#51ce3d";
 				exampleLabel.color = "green";
 				goldenExample.color = "black";
-				greenButton.checked = true;
+				//greenButton.checked = true;
 		} else if (changeColors == "amber") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#c6ba4f";
 				exampleLabel.color = "red";
 				goldenExample.color = "black";
-				amberButton.checked = true;
+				//amberButton.checked = true;
 				}
 
 			return;
@@ -82,7 +82,7 @@ Item {
 				id: themeButton
 				text: "Theme Colors"
 				exclusiveGroup: colorScheme
-				onCheckedChanged: { 
+				onClicked: { 
 					changeColors = "theme"; 
 					console.log("click theme");
 					Qt.callLater(function() {
@@ -97,12 +97,13 @@ Item {
 				id: bwButton
 				text: "Black & White Terminal"
 				exclusiveGroup: colorScheme
-				onCheckedChanged: {
+
+				onClicked: {
+					console.log("bw clicked");
 					changeColors = "bw";
 					Qt.callLater(function() {
 						applyColorScheme();
 						});
-					 
 				}
 				}
 
@@ -113,7 +114,7 @@ Item {
 				id: greenButton
 				text: "Green Terminal"
 				exclusiveGroup: colorScheme
-				onCheckedChanged: {
+				onClicked: {
 					changeColors = "green"; 
 					Qt.callLater(function() {
 						applyColorScheme();
@@ -128,7 +129,7 @@ Item {
 				id: amberButton
 				text: "Amber Terminal"
 				exclusiveGroup: colorScheme
-				onCheckedChanged: {
+				onClicked: {
 					changeColors = "amber"; 
 					 Qt.callLater(function() {
 						applyColorScheme();
