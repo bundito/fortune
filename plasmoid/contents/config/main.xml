@@ -158,6 +158,11 @@
     <default>false</default>
   </entry>
 
+  <entry name="colorScheme" type="text">
+    <label>theme color scheme</label>
+    <default>theme</default>
+  </entry>
+
 </group>
 
 

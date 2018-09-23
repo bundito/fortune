@@ -8,48 +8,56 @@ import QtQuick.Dialogs 1.3 as Dialogs
 
 
 Item {
-	
-		property alias cfg_themeColors: themeButton.checked;
-		property alias cfg_bwColors: bwButton.checked;
-		property alias cfg_greenColors: greenButton.checked;
-		property alias cfg_amberColors: amberButton.checked;
 
 		property var textColor
 		property var backgroundColor
 
-		
+		property var changeColors
 
-		function changeColors(scheme) {
+	//	property alias cfg_themeColors: themeButton.checked;
+	//	property alias cfg_bwColors: bwButton.checked;
+	//	property alias cfg_greenColors: greenButton.checked;
+	//	property alias cfg_amberColors: amberButton.checked
 
-		switch(scheme) {
-			case "theme":
+	
+			
+
+		function applyColorScheme() {
+
+			console.log("func: " + changeColors);
+
+		if (changeColors == "theme") {
 				plasmoid.configuration.backgroundColor = theme.backgroundColor;
 				plasmoid.configuration.textColor = theme.textColor;
-				
-				break;
-
-			case "bw":
+				exampleLabel.color = theme.textColor;
+				goldenExample.color = theme.backgroundColor;
+				themeButton.checked = true;
+		} else if (changeColors == "bw") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#ffffff";
-				
-				break;
-
-			case "green":
+				exampleLabel.color = "white";
+				goldenExample.color = "black";
+				bwButton.checked = true;
+		} else if (changeColors == "green") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#51ce3d";
-				
-				break;
-
-			case "amber":
+				exampleLabel.color = "green";
+				goldenExample.color = "black";
+				greenButton.checked = true;
+		} else if (changeColors == "amber") {
 				plasmoid.configuration.backgroundColor = "#000000";
 				plasmoid.configuration.textColor = "#c6ba4f";
-				
-				break;
+				exampleLabel.color = "red";
+				goldenExample.color = "black";
+				amberButton.checked = true;
+				}
+
+			return;
 		}
 
-		return;
+		
 
-	}
+	
 		
 		Timer {
 			id: slowdown
@@ -62,6 +70,7 @@ Item {
 		Layout.GridLayout {
 			id: colorGrid
 			columns: 2
+
 			
 
 		Layout.ColumnLayout {
@@ -73,96 +82,124 @@ Item {
 				id: themeButton
 				text: "Theme Colors"
 				exclusiveGroup: colorScheme
-				onCheckedChanged: {
-					slowdown.running = true;
-					changeColors("theme");
+				onCheckedChanged: { 
+					changeColors = "theme"; 
+					console.log("click theme");
+					Qt.callLater(function() {
+						applyColorScheme();
+						});
 					
 				}
-
-			}
+				}
+			
 
 			RadioButton {
 				id: bwButton
 				text: "Black & White Terminal"
 				exclusiveGroup: colorScheme
 				onCheckedChanged: {
-					slowdown.running = true;
-					exampleLabel.color = "#ffffff";
-					goldenExample.color = "#000000";
-					changeColors("bw");
+					changeColors = "bw";
+					Qt.callLater(function() {
+						applyColorScheme();
+						});
+					 
+				}
 				}
 
 
-			}
+			
 
 			RadioButton {
 				id: greenButton
 				text: "Green Terminal"
 				exclusiveGroup: colorScheme
 				onCheckedChanged: {
-					slowdown.running = true;
-					changeColors("green");
+					changeColors = "green"; 
+					Qt.callLater(function() {
+						applyColorScheme();
+						});
+					
 				}
-			}
+				
+				}
+			
 
 			RadioButton {
 				id: amberButton
 				text: "Amber Terminal"
 				exclusiveGroup: colorScheme
 				onCheckedChanged: {
-					slowdown.running = true;
-					changeColors("amber");
+					changeColors = "amber"; 
+					 Qt.callLater(function() {
+						applyColorScheme();
+						});
+					
 				}
-			}
+				
+				}
 
+	
+
+		}
+
+				
+				
+					
 
 			
-		}
+		
 		
 
 	// END OF LEFT COLUMN
 
 		Layout.ColumnLayout {
 			
-						
-
-			
-
-			
+	
 
 				Rectangle {
 					id: goldenExample
 					width: 250
 					height: 150
-					onColorChanged: {
-						console.log("bg changed" + goldenExample.color);
-					}
-					color: plasmoid.configure.backgroundColor
-					
-					
-
+		
 					
 						}
 
 				Label {
 					id: exampleLabel
 					anchors.centerIn: goldenExample
-					color: plasmoid.configuration.textColor
+					
 					font.pointSize: 10.0
 					font.family: "Courier"
 					
 					text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
 					
+					onColorChanged: {
+						console.log("label:" + exampleLabel.color);
+					}
+
+					
+
+
+
 				}
-			}
-			
+
+				
+
 				}
 			
 
+
+			
+}
+	Component.onCompleted: {
+				applyColorScheme();
+				console.log("C.oc");
+			}	
+
+}
 		
-
-
-	}
+		
+		
 
 
 
