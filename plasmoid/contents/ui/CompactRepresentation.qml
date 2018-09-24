@@ -31,7 +31,7 @@ Item {
     id: cookieImg
     source:  newOK ? Qt.resolvedUrl("../images/fortune-cookie.png") : Qt.resolvedUrl("../images/broken-cookie.png")
     anchors.fill: parent
-    ToolTip.text: "This is <b>Fortune</b>"
+    ToolTip.text: "This is <b>Fortune"
 
    }
 

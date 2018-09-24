@@ -1,8 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Fortune
-Comment=Daily message with many options
-Icon=/images/fortune-cookie.svg
+Comment=Daily messages with tons of options
+Icon=/images/fortune-cookie.png
 Type=Service
 
 X-KDE-ParentApp=
