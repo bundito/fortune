@@ -14,7 +14,7 @@ Item {
 	property var have_warned: plasmoid.configuration.override_once;
 
 	Layout.ColumnLayout {
-		spacing: 20
+		spacing: 15
 		CheckBox {
 			id: override
 			text: "Override Daily Fortune"
@@ -52,11 +52,11 @@ Item {
 
 			ComboBox {
 				id: intervalBox
-				currentIndex: 1
+				currentIndex: plasmoid.configuration.intervalIndex
 				width: 250
 				model: ListModel {
 					id: intervalItems
-					ListElement { text: "5 minutes"; 	msecs: 5000 }
+					ListElement { text: "5 minutes"; msecs: 5000 }
 					ListElement { text: "10 minutes"; msecs: 10000 }
 					ListElement { text: "30 minutes"; msecs: 30000 }
 					ListElement { text: "1 hour"; msec: 60000 }
@@ -64,6 +64,11 @@ Item {
 					ListElement { text: "8 hours"; msec: 480000 }
 					ListElement { text: "12 hours"; msec: 720000 }
 				}
+			
+				onAccepted: {
+					plasmoid.configuration.intervalIndex = intervalBox.index;
+				}
+
 			}
 
 		}

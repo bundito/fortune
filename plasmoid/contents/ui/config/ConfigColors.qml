@@ -58,9 +58,12 @@ Item {
 			columns: 2
 			columnSpacing: 25
 
+
 			
 
 		Layout.ColumnLayout {
+			spacing: 10
+
 			anchors.top: parent.top
 			
 			ExclusiveGroup { id: colorScheme }

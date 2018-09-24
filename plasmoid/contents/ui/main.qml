@@ -20,6 +20,9 @@ Item {
 	//property var groupQuery
 	property var cmd;
 
+	property int delay: 5000;
+	property var newOK: true;
+
 
 	id: root
 

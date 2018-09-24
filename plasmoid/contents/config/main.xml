@@ -173,9 +173,9 @@
     <default>false</default>
   </entry>
 
-  <entry name="nextFortune" type="text">
+  <entry name="intervalIndex" type="int">
     <label>time until the next fortune unlocks</label>
-    <default>20 minutes</default>
+    <default>0</default>
   </entry>
 
   <entry name="storedFortune" type="text">
