@@ -19,5 +19,11 @@ ConfigModel {
         source: "config/ConfigTime.qml"
     }
 
+    ConfigCategory {
+        name: "About Fortune"
+        icon: "help-about"
+        source: "config/ConfigAbout.qml"
+    }
+
     
 }
