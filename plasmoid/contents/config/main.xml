@@ -163,6 +163,27 @@
     <default>theme</default>
   </entry>
 
+  <entry name="override" type="bool">
+    <label>flag if daily limit is overridden</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="override_once" type="bool">
+    <label>flag to only show override warning once</label>
+    <default>false</default>
+  </entry>
+
+  <entry name="nextFortune" type="text">
+    <label>time until the next fortune unlocks</label>
+    <default>20 minutes</default>
+  </entry>
+
+  <entry name="storedFortune" type="text">
+    <label>saved fortune until the next one unlocks</label>
+    <default>Hello!</default>
+  </entry>
+
+
 </group>
 
 

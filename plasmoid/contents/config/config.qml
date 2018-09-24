@@ -13,5 +13,11 @@ ConfigModel {
     	source: "config/ConfigColors.qml"
     }
 
+    ConfigCategory {
+        name: "Time Settings"
+        icon: "appointment-new"
+        source: "config/ConfigTime.qml"
+    }
+
     
 }
