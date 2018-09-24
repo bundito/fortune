@@ -1,0 +1,7 @@
+"Fortune" (or more correctly, 'fortune') was a small program that would display a humorous or interesting message on a user's screen. It was introduced with the release of Unix 7, in 1979. In those days, users logged into to a text screen, checked their email on a text screen, and so on. Windowing systems and graphic user interfaces were still in their primitave stages.
+
+Fortune typically had a variety of sources available, with different themes. These themes were directed at the Unix userbase of the era: computer scientists and hardcore nerds. As a result, the contents of "fortune" were computer jokes and anecdotes, and quotes from fan-favorite sources like Star Trek, The Hitchhiker's Guide To The Galaxy, and The Simpsons. Also included were random jokes, quotations from famous people, and general random silliness.
+
+The various sources available in this widget are all authentic fortune source files from that era. As such, the jokes and references may be out-of-date, no longer relevant, or refer to technical topics that have long since become obsolete. It seemed important to recreate "fortune" as accurately as possible, without modernizing it aside from how it's presented.
+
+The original "fortune" program was written by Ken Arnold in 1979. This KDE plasmoid version was written by Scott Harvey in 2018, with far too many options. It was built over a the course of a few months, starting and stopping, and dreaming up new features. I hope you enjoy it.
