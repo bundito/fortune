@@ -1,0 +1,18 @@
+PHOTO ATTRIBUTIONS
+==================
+
+Photo of Dennis Ritchie by Denise Panyik-Dale, 2011. CC BY 2.0 license.
+https://en.wikipedia.org/wiki/Dennis_Ritchie#/media/File:Dennis_Ritchie_2011.jpg
+
+Photo of Richard Stallman by "Dkoukoul", 2015. CC-BY-SA 2.0 license.
+https://commons.wikimedia.org/wiki/Richard_Stallman#/media/File:Richard_Stallman_at_CommonsFest_Athens_2015_2.JPG
+
+Photo of Larry Wall by Randal Schwartz, 2007. CC BY-SA 2.0 license.
+Modification: Cropped for matching proportions.
+https://commons.wikimedia.org/wiki/Larry_Wall#/media/File:Larry_Wall_YAPC_2007.jpg
+
+"Original" photo of Bjarne Stroustrup, 2004. GFDL license.
+Modification: Black & white filter applied.
+https://fi.wikipedia.org/wiki/Bjarne_Stroustrup#/media/File:BjarneStroustrup.jpg
+In response to the boilerplate request for permission, Bjarne Stroustrup said in Danish: "Selvfoelgelig kan du bruge dem" 
+("Of course you may use them" - the permission also covers biographical information).

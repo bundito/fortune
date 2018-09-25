@@ -47,9 +47,9 @@ Item {
 			}
 
 				MouseArea {
-					anchors.fill: textColor
+					anchors.fill: bgImage
 					onClicked: {
-					   plasmoid.expanded = !plasmoid.expanded;
+					   plasmoid.expanded = false
 					   //cookieIcon = Qt.resolvedUrl("../images/fortune-cookie.png")
 					  
 				}

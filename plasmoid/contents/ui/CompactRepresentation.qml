@@ -5,7 +5,6 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1 as Layout
 import org.kde.kirigami 2.4 as Kirigami
-import QtGraphicalEffects 1.0
 
 
 
@@ -28,10 +27,11 @@ Item {
   }
 
    PlasmaCore.IconItem {
+    ToolTip.text: "This is fortune."
     id: cookieImg
     source:  newOK ? Qt.resolvedUrl("../images/fortune-cookie.png") : Qt.resolvedUrl("../images/broken-cookie.png")
     anchors.fill: parent
-    ToolTip.text: "This is <b>Fortune"
+    
 
    }
 
