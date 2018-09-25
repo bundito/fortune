@@ -39,6 +39,7 @@ Item {
 				
 				color: plasmoid.configuration.textColor
 				 font.pointSize: 10
+				 font.bold: true
 				font.family: "Courier"
 				//color: txtColor
 				//color: textColor
