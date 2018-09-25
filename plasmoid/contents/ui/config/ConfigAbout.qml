@@ -8,23 +8,24 @@ import QtQuick.Controls 2.4 as QQC2
 
 Item {
 
-
 QQC2.ScrollView {
 	height: parent.height
 	width: parent.width
 
 		QQC2.TextArea {
 		id: aboutText
-		
+		anchors.fill: parent
 		textFormat: TextEdit.RichText
 		wrapMode: TextEdit.Wrap
 		
 		
-		text: "\"Fortune\" (or more correctly, \'fortune\') was a small program that would display a humorous "
+		text: "<img src=\"ritchie.png\" align=\"right\"/>" 
+		+ "\"Fortune\" (or more correctly, \'fortune\') was a small program that would display a humorous "
 		+ "or interesting message on a user\'s screen. It was introduced with the release of Unix 7, in 1979. "
 		+ "In those days, users logged into to a text terminal where they did most of their work.  Even email was"
 		+ "done all on the terminal. Windowing systems and graphic user interfaces were still in their infancy."
 		+ "<p>"
+		+ 
 		+ "Fortune typically had a variety of sources available, with different themes. These themes were directed "
 		+ "at the Unix userbase of the era: computer scientists and hardcore nerds. As a result, the contents of "
 		+ "\"fortune\" were computer jokes and anecdotes, and quotes from fan-favorite sources like Star Trek, "
@@ -39,10 +40,11 @@ QQC2.ScrollView {
          
          }
 
+       
         
    
    }
 
-
-	}
+}
+	
 
