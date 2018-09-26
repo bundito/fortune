@@ -14,6 +14,30 @@ Item {
 
   property var savedFortune: plasmoid.configuration.savedFortune;
 
+  //-------------------------------------------------//
+  // Notification stuff...                           //
+  //-------------------------------------------------//
+
+      PlasmaCore.DataSource {
+          id: notificationSource
+          engine: "notifications"
+          connectedSources: "org.freedesktop.Notifications"
+      }
+
+      function createNotification() {
+              var service = notificationSource.serviceForSource("notification");
+              var operation = service.operationDescription("createNotification");
+
+              operation.appName = "Fortune"
+              operation["appIcon"] = Qt.resolvedUrl("../images/fortune-cookie.png");
+              operation.summary = "Fortune"
+              operation["body"] = "A new fortune is available.";
+              operation["timeout"] = 2000;
+
+              service.startOperationCall(operation);
+          }
+
+
 
   Timer {
     id: intervalTimer
@@ -23,8 +47,12 @@ Item {
     onTriggered: {
       newOK = true;
       console.log("Timer triggered.");
+      createNotification();
     }
   }
+
+
+//----------------- END NOTIFICATION ----------------------//
 
    PlasmaCore.IconItem {
     ToolTip.text: "This is fortune."
@@ -107,6 +135,8 @@ queryDB.connectedSources = [];
       }
 
   }
+
+
 
 
 
