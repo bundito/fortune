@@ -20,7 +20,7 @@ Item {
 	//	property alias cfg_amberColors: amberButton.checked
 
 	
-			
+		FontLoader { id: localFont; source:  Qt.resolvedUrl("../config/VT323-Regular.ttf");}			
 
 		function applyColorScheme() {
 
@@ -147,26 +147,27 @@ Item {
 					border.color: exampleLabel.color
 		
 					
-						}
-
-				Label {
-					id: exampleLabel
-					anchors.centerIn: goldenExample
+	
+									
 					
-					font.pointSize: 10.0
-					font.family: "Courier"
-					
-					text: "This is an example message.\n\nThe font cannot be changed,\nin memory of old terminals."
-					
-					onColorChanged: {
-						console.log("label:" + exampleLabel.color);
+					Text {
+						anchors.fill: goldenExample
+						font.family: localFont.name; 
+						font.pointSize: 15
+						horizontalAlignment: Text.AlignHCenter
+						verticalAlignment: Text.AlignVCenter
+						text: "This is an example message.\n\nThe font cannot be changed,\nout of respect for \n"
+							 + "the old terminals."
 					}
+					
+					
+
 
 					
 
 
 
-				}
+				
 
 				
 
@@ -184,7 +185,7 @@ Item {
 }
 		
 		
-		
+	}	
 
 
 

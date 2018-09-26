@@ -20,7 +20,7 @@ Item {
 	//property var groupQuery
 	property var cmd;
 
-	property int delay: 2000;
+	property int delay: 200;
 	property var newOK: true;
 
 

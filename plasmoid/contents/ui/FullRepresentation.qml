@@ -10,10 +10,11 @@ import QtGraphicalEffects 1.0
 
 Item {
 
+	FontLoader { id: localFont; source: Qt.resolvedUrl("VT323-Regular.ttf");}
 
 	id: baseItem
-	Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
-	Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
+	Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 60
+	Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 8
 
 
 	//layer.enabled: true;
@@ -22,8 +23,8 @@ Item {
 			
 			id: bgImage
 			anchors.fill: baseItem
-			Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 75
-			Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 12
+			Layout.preferredWidth: theme.mSize(theme.defaultFont).width * 59
+			Layout.preferredHeight: theme.mSize(theme.defaultFont).height * 8.5
 			color: plasmoid.configuration.backgroundColor
 			
 			
@@ -38,9 +39,11 @@ Item {
 				anchors.centerIn: baseItem
 				
 				color: plasmoid.configuration.textColor
-				 font.pointSize: 10
-				 font.bold: true
-				font.family: "Courier"
+				 font.pointSize: (theme.defaultFont.pointSize) * 1.3
+				 
+				 horizontalAlignment: Text.AlignHCenter
+				 verticalAlignment: Text.AlignVCenter
+				 font.family: localFont.name
 				//color: txtColor
 				//color: textColor
 				text: fortune

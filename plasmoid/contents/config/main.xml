@@ -183,6 +183,10 @@
     <default>Hello!</default>
   </entry>
 
+  <entry name="notify" type="bool">
+    <label>show notification</label>
+    <default>true</default>d
+</entry>
 
 </group>
 

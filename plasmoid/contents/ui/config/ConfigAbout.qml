@@ -7,7 +7,7 @@ import QtQuick.Layouts 1.1 as Layout
 import QtQuick.Dialogs 1.3 as Dialogs
 import QtQuick.Controls 2.4 as QQC2
 import QtQuick.Dialogs 1.3 as Dialogs
-
+import QtWebEngine 1.7 as QWE
 
 Item {
 
@@ -118,6 +118,7 @@ QQC2.ScrollView {
    				eggDialog.close();
    				if (bjarneButton.checked) {
    					console.log("Correct!");
+   					rightDialog.open();
    				} else {
    					if (ritchieButton.checked) {
    						wrongDialog.open()
@@ -166,9 +167,44 @@ QQC2.ScrollView {
    				onAccepted: {wrongDialog.close();}
    				}
    			
-   			}
+   				Dialogs.Dialog {
+   					id: rightDialog
+   					
+
+   						Label {
+   							id: rightTitle
+   							anchors.horizontalCenter: parent.horizontalCenter
+   							font.pointSize: 14
+   							font.bold: true
+							text: "Correct!"
+							}
+
+						Label {
+							id: rightText
+							anchors.top: rightTitle.bottom
+							anchors.horizontalCenter: parent.horizontalCenter
+							text: "It's Bjarne! Good job finding the Easter egg."
+								+ "<p><p>"
+								+ "As a reward, here's a photo of Bjarne Stroustrup looking thoughtful."
+								+ "<p><p>"
+						
+  						}
+
+  						Image {
+  							id: thumbnail
+  							anchors.top: rightText.bottom
+  							width:800
+  							height:480
+  							source: "bjarne-wallpaper.jpg"
+  						}
+
+  						
    				
 
+
+   			}
+   				
+}
    			
 
    			

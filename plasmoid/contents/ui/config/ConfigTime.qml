@@ -10,6 +10,7 @@ import QtQuick.Dialogs 1.3 as Dialogs
 Item {
 
 	property alias cfg_override: override.checked
+	property alias cfg_notify: showNotify.checked
 
 	property var have_warned: plasmoid.configuration.override_once;
 
@@ -39,9 +40,6 @@ Item {
 		}
 	}
 
-
-	
-	
 		Layout.RowLayout {
 			id: intervalRow
 			visible: false
@@ -71,6 +69,13 @@ Item {
 
 			}
 
+		}
+
+		Layout.RowLayout {
+			CheckBox {
+				id: showNotify
+				text: "Show notification when new fortune is available"
+			}
 		}
 	}
 
