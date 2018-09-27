@@ -9,22 +9,35 @@ import QtQuick.Dialogs 1.3 as Dialogs
 
 Item {
 
-		property var textColor
-		property var backgroundColor
+	property var textColor
+	property var backgroundColor
 
-		property var changeColors
+	property alias cfg_themeColors: themeButton.checked;
+	property alias cfg_bwColors: bwButton.checked;
+	property alias cfg_greenColors: greenButton.checked;
+	property alias cfg_amberColors: amberButton.checked;
 
-	//	property alias cfg_themeColors: themeButton.checked;
-	//	property alias cfg_bwColors: bwButton.checked;
-	//	property alias cfg_greenColors: greenButton.checked;
-	//	property alias cfg_amberColors: amberButton.checked
+	property var zed: initialColors();
+		
 
-	
-		FontLoader { id: localFont; source:  Qt.resolvedUrl("../config/VT323-Regular.ttf");}			
 
-		function applyColorScheme() {
 
-			console.log("func: " + changeColors);
+	function initialColors() {
+		if (plasmoid.configuration.themeColors) {
+			applyColorScheme("theme");
+		} else if (plasmoid.configuration.bwColors) {
+			applyColorScheme("bw");
+		} else if (plasmoid.configuration.greenColors) {
+			applyColorScheme("green");
+		} else if (plasmoid.configuration.amberColors) {
+			applyColorScheme("amber");
+		}
+	}
+
+
+
+
+		function applyColorScheme(changeColors) {
 
 		if (changeColors == "theme") {
 				plasmoid.configuration.backgroundColor = theme.backgroundColor;
@@ -50,7 +63,6 @@ Item {
 
 			return;
 		}
-
 	
 
 		Layout.GridLayout {
@@ -59,40 +71,35 @@ Item {
 			columnSpacing: 25
 
 
-			
+
 
 		Layout.ColumnLayout {
-			spacing: 10
-
 			anchors.top: parent.top
-			
+			spacing: 15
+
 			ExclusiveGroup { id: colorScheme }
 
 			RadioButton {
 				id: themeButton
-				text: "Theme Colors"
 				exclusiveGroup: colorScheme
+				text: "Theme Colors"
 				onClicked: { 
-					changeColors = "theme"; 
 					console.log("click theme");
 					Qt.callLater(function() {
-						applyColorScheme();
+						applyColorScheme("theme");
 						});
 					
 				}
 				}
-			
 
 			RadioButton {
 				id: bwButton
-				text: "Black & White Terminal"
 				exclusiveGroup: colorScheme
-
+				text: "Black & White Terminal"
 				onClicked: {
 					console.log("bw clicked");
-					changeColors = "bw";
 					Qt.callLater(function() {
-						applyColorScheme();
+						applyColorScheme("bw");
 						});
 				}
 				}
@@ -105,9 +112,8 @@ Item {
 				text: "Green Terminal"
 				exclusiveGroup: colorScheme
 				onClicked: {
-					changeColors = "green"; 
 					Qt.callLater(function() {
-						applyColorScheme();
+						applyColorScheme("green");
 						});
 					
 				}
@@ -120,24 +126,18 @@ Item {
 				text: "Amber Terminal"
 				exclusiveGroup: colorScheme
 				onClicked: {
-					changeColors = "amber"; 
 					 Qt.callLater(function() {
-						applyColorScheme();
+						applyColorScheme("amber");
 						});
 					
 				}
 				
 				}
-
 		}
-
-		
 
 	// END OF LEFT COLUMN
 
 		Layout.ColumnLayout {
-			
-	
 
 				Rectangle {
 					id: goldenExample
@@ -145,49 +145,30 @@ Item {
 					height: 150
 					border.width: 1
 					border.color: exampleLabel.color
-		
-					
-	
-									
-					
-					Text {
-						anchors.fill: goldenExample
-						font.family: localFont.name; 
-						font.pointSize: 15
-						horizontalAlignment: Text.AlignHCenter
-						verticalAlignment: Text.AlignVCenter
-						text: "This is an example message.\n\nThe font cannot be changed,\nout of respect for \n"
-							 + "the old terminals."
-					}
-					
-					
-
-
-					
-
-
-
-				
-
-				
-
 				}
-			
 
+				FontLoader { id: localFont; source: Qt.resolvedUrl("VT323-Regular.ttf");}
 
-			
-}
-	Component.onCompleted: {
-				applyColorScheme();
-				console.log("C.oc");
-			}	
-
-}
-		
-		
+				Label {
+					id: exampleLabel
+					anchors.centerIn: goldenExample
+					horizontalAlignment: Text.AlignHCenter
+					verticalAlignment: Text.AlignVCenter
+					font.pointSize: 13
+					font.family: localFont.name
+					
+					text: "This is an example message.\n\nThe font cannot be changed,\nout of respect for old terminals."
+					
+					onColorChanged: {
+						console.log("label:" + exampleLabel.color);
+					}
 	}	
 
+}
+		
+		}
+		
 
-
+}
 
 
