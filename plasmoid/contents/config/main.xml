@@ -104,12 +104,12 @@
 
   <entry name="groupList" type="string">
     <label>list of active groups</label>
-    <default>12</default>
+    <default></default>
   </entry>
 
-  <entry name="savedList" type="string">
+  <entry name="activeGroups" type="string">
     <label>Saved list of selected groups</label>
-    <default>12</default>
+    <default>"12"</default>
   </entry>
 
   <entry name="firstRun" type="bool">

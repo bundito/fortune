@@ -108,11 +108,6 @@ Item {
 		}
 
 		}
-		
-	
-
-
-
 
 } // end of main Item
 		

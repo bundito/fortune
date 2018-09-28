@@ -15,7 +15,6 @@ Item {
 	property string path;
 	property var sampleQuery;
 
-	
 
 
 		
@@ -26,13 +25,12 @@ Item {
 	property var display;
 	
 	property var groupString
-	property var activeGroups
 	property var modeCount: 0
 	property int sampleGroup: 0
 	property var grp;
 	property string cmd;
 	property string sampleText;
-	
+	property var activeGroups: []
 
 	property alias cfg_group1:	group1.checked
 	property alias cfg_group2:	group2.checked
@@ -48,12 +46,15 @@ Item {
 	property alias cfg_group12:	group12.checked
 	
 	
+
 	property alias cfg_group15:	group15.checked
 	
 	property alias cfg_group17:	group17.checked
 	property alias cfg_group18:	group18.checked
 	property alias cfg_group19:	group19.checked
-	property string cfg_activeGroups: activeGroups;
+	property bool firstRun: plasmoid.configuration.firstRun
+	property string workingGroup: plasmoid.configuration.activeGroups
+	
 	
 
 	// GROUP20	
@@ -92,7 +93,7 @@ Item {
 		title: "Sample Fortune"
 		visible: false;
 
-		standardButtons: Dialogs.StandardButton.ok
+		//standardButtons: Dialogs.StandardButton.ok
 		
 
 
@@ -183,7 +184,7 @@ Item {
 			id: group12
 			onClicked: {
 				plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
-				groupsUpdate(12, group12);
+				groupsUpdate("12", group12);
 			}	
 		}		
 		Label {
@@ -207,7 +208,7 @@ Item {
 				id: group1
 				onClicked: {
 					plasmoid.configuration[cfg_group1] = !plasmoid.configuration[cfg_group1];
-					groupsUpdate(1, group1);
+					groupsUpdate("1", group1);
 					}	
 				}
 				
@@ -230,7 +231,7 @@ Item {
 					id: group2
 					onClicked: {
 						plasmoid.configuration[cfg_group2] = !plasmoid.configuration[cfg_group2];
-						groupsUpdate(2, group2);
+						groupsUpdate("2", group2);
 					}	
 				}
 				
@@ -253,7 +254,7 @@ Item {
 					id: group4
 					onClicked: {
 		 				plasmoid.configuration[cfg_group4] = !plasmoid.configuration[cfg_group4];
-			 			groupsUpdate(4, group4);
+			 			groupsUpdate("4", group4);
 			 		}	
 			 	}
 				Label {
@@ -275,7 +276,7 @@ Item {
 					id: group5
 					onClicked: {
 						plasmoid.configuration[cfg_group5] = !plasmoid.configuration[cfg_group5]
-						groupsUpdate(5, group5);
+						groupsUpdate("5", group5);
 					}	
 				}
 				Label {
@@ -297,7 +298,7 @@ Item {
 					id: group6
 					onClicked: {
 						plasmoid.configuration[cfg_group6] = !plasmoid.configuration[cfg_group6];
-						groupsUpdate(6, group6);
+						groupsUpdate("6", group6);
 					}	
 				}
 				Label {
@@ -319,7 +320,7 @@ Item {
 					id: group7
 					onClicked: {
 						plasmoid.configuration[cfg_group7] = !plasmoid.configuration[cfg_group7];
-						groupsUpdate(7, group7);
+						groupsUpdate("7", group7);
 					}	
 				}
 				Label {
@@ -341,7 +342,7 @@ Item {
 					id: group8
 					onClicked: {
 						plasmoid.configuration[cfg_group8] = !plasmoid.configuration[cfg_group8]
-						groupsUpdate(8, group8);
+						groupsUpdate("8", group8);
 					}	
 				}
 				Label {
@@ -364,11 +365,11 @@ Item {
 					id: group9
 					onClicked: {
 						plasmoid.configuration[cfg_group9] = !plasmoid.configuration[cfg_group9];
-						groupsUpdate(9, group9);
+						groupsUpdate("9", group9);
 					}	
 				}
 				Label {
-					text: "Science jokes, long and short (1140)"
+					text: "Science jokes, long and short"
 				}
 				Label {
 					text: "1140"
@@ -386,7 +387,7 @@ Item {
 					id: group10
 					onClicked: {
 						plasmoid.configuration[cfg_group10] = !plasmoid.configuration[cfg_group10];
-						groupsUpdate(10, group10);
+						groupsUpdate("10", group10);
 					}	
 				}
 				Label {
@@ -408,7 +409,7 @@ Item {
 					id: group11
 					onClicked: {
 						plasmoid.configuration[cfg_group11] = !plasmoid.configuration[cfg_group11];
-						groupsUpdate(11, group11);
+						groupsUpdate("11", group11);
 					}	
 				}
 				Label {
@@ -431,7 +432,7 @@ Item {
 					id: group15
 					onClicked: {
 						plasmoid.configuration[cfg_group15] = !plasmoid.configuration[cfg_group15];
-						groupsUpdate(15, group12);
+						groupsUpdate("15", group15);
 					}	
 				}
 				Label {
@@ -447,13 +448,12 @@ Item {
 							}	
 				}
 
-
 				// #17 - Linux
 				CheckBox {
 				id: group17
 				onClicked: {
 					plasmoid.configuration[cfg_group17] = !plasmoid.configuration[cfg_group17];
-					groupsUpdate(17, group17);
+					groupsUpdate("17", group17);
 						}	
 					}
 				Label {
@@ -475,7 +475,7 @@ Item {
 				id: group18
 				onClicked: {
 					plasmoid.configuration[cfg_group18] = !plasmoid.configuration[cfg_group18];
-					groupsUpdate(18, group18);
+					groupsUpdate("18", group18);
 					}	
 				}
 				Label {
@@ -492,11 +492,11 @@ Item {
 				}
 
 
-				// #17 - Homer
+				// #19 - Homer
 				CheckBox {
 				id: group19
 				onClicked: {
-					groupsUpdate(19, group19);
+					groupsUpdate("19", group19);
 					plasmoid.configuration[cfg_group19] = !plasmoid.configuration[cfg_group19];
 						}	
 					}
@@ -516,6 +516,13 @@ Item {
 
 			}
 
+			Timer {
+				id: waitClick
+				interval: 250
+				running: false
+				repeat: false
+			}
+
 		 
 		function groupsUpdate(grp, box) {
 
@@ -523,34 +530,75 @@ Item {
 
 			if (plasmoid.configuration.firstRun == true) {
 				plasmoid.configuration.firstRun = false;
-				activeGroups = [12];
-				console.log(activeGroups);
+				activeGroups.push("12");
+			} 
+
+			console.log("AG: " +activeGroups);
+
+			var index = activeGroups.indexOf(grp);
+
+			if (index == -1) {
+				activeGroups.push(grp);
+			} else {
+				activeGroups.splice(index, 1)
+			}
+
+			console.log("AG After: " + activeGroups);
+
+	}
+
+		/*	var activeGroups = workingGroup.split(",");
+
+			
+			console.log("FR: " + firstRun);
+			
+
+			if (firstRun == true) {
+				plasmoid.configuration.firstRun = false;
+				
+				
+				console.log("Initial set of activeGroups: " + activeGroups);
 			} 
 			
+			waitClick.running = true;
+
 			if ((activeGroups.length == 1) && activeGroups.indexOf(grp) >= 0) {
 				box.checked = true;
 				noSourcesDialog.visible = true;
 				return false;
 				
 			}
+			console.log("AG Type: " +  typeof activeGroups);
+			console.log("INDEX: " + activeGroups.indexOf(grp));
 
 
-			if (activeGroups.indexOf(grp) == -1) {
+			console.log("Type: " + typeof grp);
+
+			
+			console.log("Box " + box.checked);
+			
+			if (!box.checked) {
+				console.log("Checked: no - ADD");
 				activeGroups.push(grp);
+				
 			} else {
-				var splicePoint = activeGroups.indexOf(grp);
-				activeGroups.splice(splicePoint, 1);
+				console.log("Box CHECKED - REMOVE");
+				for (var i = 0; i < activeGroups.length-1; i++) { 
+				   if (activeGroups[i] == grp) {
+				     activeGroups.splice(i, 1);
+				   }
+				}
 			}
 
-			var configString = activeGroups.join();
+			// var configString = activeGroups.join();
 
-			console.log("GroupString: " + configString);
+			console.log("GroupString: " + activeGroups);
 
-			plasmoid.configuration.groupList = configString;
+			plasmoid.configuration.activeGroups = activeGroups;
 			//plasmoid.configuration["cfg_savedList"] = activeGroups;
 		}
 
-
+*/
 		
 
 		

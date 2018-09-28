@@ -32,7 +32,8 @@ Item {
               operation["appIcon"] = Qt.resolvedUrl("../images/fortune-cookie.png");
               operation.summary = "Fortune"
               operation["body"] = "A new fortune is available.";
-              operation["timeout"] = 2000;
+              //operation["timeout"] = 2000;
+              operation["sticky"] = true;
 
               service.startOperationCall(operation);
           }
