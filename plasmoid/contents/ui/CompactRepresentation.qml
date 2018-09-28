@@ -80,6 +80,8 @@ Item {
 
 
     console.log(plasmoid.configuration.groupstring);
+    groupList = "\'" + plasmoid.configuration.activeGroups + "\'";
+
     cmd = "bash " + exec+ "code/fortuneQuery.sh " + groupList + " " + exec + "code/";
     queryDB.interval = 500;
     queryDB.connectedSources = [cmd];

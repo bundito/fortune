@@ -544,6 +544,7 @@ Item {
 			}
 
 			console.log("AG After: " + activeGroups);
+			plasmoid.configuration.activeGroups = activeGroups;
 
 	}
 
