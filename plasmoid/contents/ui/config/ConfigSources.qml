@@ -60,31 +60,43 @@ Item {
 	// GROUP20	
 
 
-	function getSample(sampleGroup) {
-		cmd = "bash " + exec+ "code/fortuneQuery.sh " + sampleGroup + " " + exec + "code/";
-		console.log(cmd)
-		console.log("sampleGroup " + sampleGroup);
-		sampleDB.interval = 250
-		sampleDB.connectedSources = cmd;
-		//console.log(sampleText);
+	function getSample(group) {
 
-		//sampleDB.interval = 0;
+	var sampleExec = exec.replace("config\/", "");
 
-		console.log("getsample")
-		console.log(sampleText)
-		
-		slowdown.running = true;		
-	}
+    cmd = "bash " + sampleExec + "code/fortuneQuery.sh \'" + group + "\' " + sampleExec + "code/";
+    queryDB.interval = 500;
+    queryDB.connectedSources = [cmd];
+    queryDB.interval = 0;
 
-	Timer {
-			id: slowdown
-	        interval: 100
-	        running: false
-	        repeat: false
-	        onTriggered:{
-	       		sampleBox.visible = true;
-	   }
-	}
+   // cookieIcon = Qt.resolvedUrl("../images/broken-cookie.png");
+  }
+
+
+  PlasmaCore.DataSource {
+    id: queryDB
+    engine: "executable"
+    interval: 250
+    connectedSources: []
+
+    onNewData: {
+
+  console.log(cmd);
+
+ 
+sampleText = data.stdout;
+sampleText = sampleText.slice(0, -1);
+
+console.log() << sampleText;
+
+sampleBox.text = sampleText;
+sampleBox.open();
+
+queryDB.connectedSources = [];
+
+}
+
+}
 
 
 	Dialogs.MessageDialog {
@@ -103,28 +115,8 @@ Item {
 	}
 	
 
-	PlasmaCore.DataSource {
-			id: sampleDB
-			engine: "executable"
-			interval: 250
-			connectedSources: cmd
-		
-
-			onNewData: {
-				sampleText = data.stdout;
-				console.log(sampleText);
-				//sampleBox.text = sampleText;
-				sampleDB.connectedSources = [];
-				sampleDB.interval = 0;
-				console.log("datasource");
-				console.log(sampleText);
-				sampleBox.text = sampleText;
-
-			
-				
-			}
-
-		} // end DataSource
+	
+	// end DataSource
 
 		
 
