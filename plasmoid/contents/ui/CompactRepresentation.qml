@@ -13,6 +13,11 @@ Item {
  
 
   property var savedFortune: plasmoid.configuration.savedFortune;
+  
+  property var foo: updateGroups(0,0);
+
+  //property var groupList: "\'" + groups + "\'";
+  
 
   //-------------------------------------------------//
   // Notification stuff...                           //
@@ -24,6 +29,10 @@ Item {
           connectedSources: "org.freedesktop.Notifications"
       }
 
+      function loadGroupVars() {
+        groups = plasmoid.configuration.activeGroups;
+      }
+
       function createNotification() {
               var service = notificationSource.serviceForSource("notification");
               var operation = service.operationDescription("createNotification");
@@ -32,12 +41,13 @@ Item {
               operation["appIcon"] = Qt.resolvedUrl("../images/fortune-cookie.png");
               operation.summary = "Fortune"
               operation["body"] = "A new fortune is available.";
-              //operation["timeout"] = 2000;
-              operation["sticky"] = true;
+              operation["timeout"] = 1000;
+              
 
               service.startOperationCall(operation);
           }
 
+  
 
 
   Timer {
@@ -61,6 +71,7 @@ Item {
     source:  newOK ? Qt.resolvedUrl("../images/fortune-cookie.png") : Qt.resolvedUrl("../images/broken-cookie.png")
     anchors.fill: parent
     
+    
 
    }
 
@@ -75,12 +86,14 @@ Item {
       } else {
         intervalTimer.running = true;
         newOK = false;
+        groups = plasmoid.configuration.activeGroups;
+        
       }
 
 
 
     console.log(plasmoid.configuration.groupstring);
-    groupList = "\'" + plasmoid.configuration.activeGroups + "\'";
+    
 
     cmd = "bash " + exec+ "code/fortuneQuery.sh " + groupList + " " + exec + "code/";
     queryDB.interval = 500;
@@ -117,6 +130,8 @@ Item {
 
 fortune = data.stdout;
 fortune = fortune.slice(0, -1);
+
+//fortune = groupList;
 
 plasmoid.configuration.savedFortune = fortune;
 

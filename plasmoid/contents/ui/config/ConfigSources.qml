@@ -183,7 +183,6 @@ Item {
 		CheckBox {
 			id: group12
 			onClicked: {
-				plasmoid.configuration[cfg_group12] = !plasmoid.configuration[cfg_group12];
 				groupsUpdate("12", group12);
 			}	
 		}		
@@ -207,8 +206,7 @@ Item {
 				CheckBox {
 				id: group1
 				onClicked: {
-					plasmoid.configuration[cfg_group1] = !plasmoid.configuration[cfg_group1];
-					groupsUpdate("1", group1);
+				groupsUpdate("1", group1);
 					}	
 				}
 				
@@ -230,7 +228,6 @@ Item {
 				CheckBox {
 					id: group2
 					onClicked: {
-						plasmoid.configuration[cfg_group2] = !plasmoid.configuration[cfg_group2];
 						groupsUpdate("2", group2);
 					}	
 				}
@@ -253,7 +250,6 @@ Item {
 				CheckBox {
 					id: group4
 					onClicked: {
-		 				plasmoid.configuration[cfg_group4] = !plasmoid.configuration[cfg_group4];
 			 			groupsUpdate("4", group4);
 			 		}	
 			 	}
@@ -275,7 +271,6 @@ Item {
 				CheckBox {
 					id: group5
 					onClicked: {
-						plasmoid.configuration[cfg_group5] = !plasmoid.configuration[cfg_group5]
 						groupsUpdate("5", group5);
 					}	
 				}
@@ -297,7 +292,6 @@ Item {
 				CheckBox {
 					id: group6
 					onClicked: {
-						plasmoid.configuration[cfg_group6] = !plasmoid.configuration[cfg_group6];
 						groupsUpdate("6", group6);
 					}	
 				}
@@ -319,7 +313,6 @@ Item {
 				CheckBox {
 					id: group7
 					onClicked: {
-						plasmoid.configuration[cfg_group7] = !plasmoid.configuration[cfg_group7];
 						groupsUpdate("7", group7);
 					}	
 				}
@@ -341,7 +334,6 @@ Item {
 				CheckBox {
 					id: group8
 					onClicked: {
-						plasmoid.configuration[cfg_group8] = !plasmoid.configuration[cfg_group8]
 						groupsUpdate("8", group8);
 					}	
 				}
@@ -364,7 +356,6 @@ Item {
 				CheckBox {
 					id: group9
 					onClicked: {
-						plasmoid.configuration[cfg_group9] = !plasmoid.configuration[cfg_group9];
 						groupsUpdate("9", group9);
 					}	
 				}
@@ -386,7 +377,6 @@ Item {
 				CheckBox {
 					id: group10
 					onClicked: {
-						plasmoid.configuration[cfg_group10] = !plasmoid.configuration[cfg_group10];
 						groupsUpdate("10", group10);
 					}	
 				}
@@ -408,7 +398,6 @@ Item {
 				CheckBox {
 					id: group11
 					onClicked: {
-						plasmoid.configuration[cfg_group11] = !plasmoid.configuration[cfg_group11];
 						groupsUpdate("11", group11);
 					}	
 				}
@@ -431,7 +420,6 @@ Item {
 				CheckBox {
 					id: group15
 					onClicked: {
-						plasmoid.configuration[cfg_group15] = !plasmoid.configuration[cfg_group15];
 						groupsUpdate("15", group15);
 					}	
 				}
@@ -452,7 +440,6 @@ Item {
 				CheckBox {
 				id: group17
 				onClicked: {
-					plasmoid.configuration[cfg_group17] = !plasmoid.configuration[cfg_group17];
 					groupsUpdate("17", group17);
 						}	
 					}
@@ -474,7 +461,6 @@ Item {
 				CheckBox {
 				id: group18
 				onClicked: {
-					plasmoid.configuration[cfg_group18] = !plasmoid.configuration[cfg_group18];
 					groupsUpdate("18", group18);
 					}	
 				}
@@ -497,7 +483,6 @@ Item {
 				id: group19
 				onClicked: {
 					groupsUpdate("19", group19);
-					plasmoid.configuration[cfg_group19] = !plasmoid.configuration[cfg_group19];
 						}	
 					}
 				Label {

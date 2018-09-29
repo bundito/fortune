@@ -109,7 +109,7 @@
 
   <entry name="activeGroups" type="string">
     <label>Saved list of selected groups</label>
-    <default>"12"</default>
+    <default>12</default>
   </entry>
 
   <entry name="firstRun" type="bool">
