@@ -1,3 +1,20 @@
+/*
+ *  Copyright (C) 2018 Scott Harvey <scott@spharvey.me>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 import QtQuick 2.7
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -43,11 +60,6 @@ QQC2.ScrollView {
 
          
          }
-
-
-       
-        
-   
    }
 
    Layout.RowLayout {
@@ -57,61 +69,58 @@ QQC2.ScrollView {
    			text: "KDE Plasmoid version of fortune <a href=\"1\">\(c\)<\/a> 2018 Scott P Harvey. Licensed under the GPLv3."
    			onLinkActivated: {eggDialog.open(); }
    		}
-}
+	}
 
-   		Dialogs.Dialog {
-   			id: eggDialog
-   			visible: false;
-   			title: "Easter Egg!"
-   			height: 250
-   			width: 600
+	Dialogs.Dialog {
+		id: eggDialog
+		visible: false;
+		title: "Easter Egg!"
+		height: 250
+		width: 600
+		
    			
-   			
-   				Rectangle {
-   					anchors.fill: parent
+		Rectangle {
+			anchors.fill: parent
 
-   					ExclusiveGroup { id: people }
-   					Layout.RowLayout {
-   						id: msgRow
-   						height: 25
-   					Label {
-   						
-   						text: "<b>Congratulations!</b> You found the Easter egg! But before we continue, a brief quiz:<p>"
-   							+ "<b>Who is the man shown in the photo above, and what is he best known for?</b>"
-   					}
+			ExclusiveGroup { id: people }
+			Layout.RowLayout {
+				id: msgRow
+				height: 25
+			Label {
+				
+				text: "<b>Congratulations!</b> You found the Easter egg! But before we continue, a brief quiz:<p>"
+					+ "<b>Who is the man shown in the photo above, and what is he best known for?</b>"
+				}
+			}
+			Layout.GridLayout {
+				columns: 2
+			anchors.top: msgRow.bottom
+			anchors.topMargin: 40
+			
+				RadioButton {
+				id: ritchieButton
+				text: "<b>Dennis Ritchie</b><br>Inventor of the C programming language"
+				exclusiveGroup: people
+				}
+
+				RadioButton {
+				id: stallmanButton
+				text: "<b>Richard Stallman</b><br>Activist and founder of the Free Software Project"
+				exclusiveGroup: people
+				}
+
+				RadioButton {
+				id: bjarneButton
+				text: "<b>Bjarne Stroustrup</b><br>Creator of the widley-used C++ language"
+				exclusiveGroup: people
+				}
+
+				RadioButton {
+				id: wallButton
+				text: "<b>Larry Wall</b><br>Creator of the Perl programming language"
+				exclusiveGroup: people
+					}
    				}
-   					Layout.GridLayout {
-   						columns: 2
-   					anchors.top: msgRow.bottom
-   					anchors.topMargin: 40
-   					
-   						RadioButton {
-							id: ritchieButton
-							text: "<b>Dennis Ritchie</b><br>Inventor of the C programming language"
-							exclusiveGroup: people
-   						}
-
-   						RadioButton {
-							id: stallmanButton
-							text: "<b>Richard Stallman</b><br>Activist and founder of the Free Software Project"
-							exclusiveGroup: people
-   						}
-
-   						RadioButton {
-							id: bjarneButton
-							text: "<b>Bjarne Stroustrup</b><br>Creator of the widley-used C++ language"
-							exclusiveGroup: people
-   						}
-
-   						RadioButton {
-							id: wallButton
-							text: "<b>Larry Wall</b><br>Creator of the Perl programming language"
-							exclusiveGroup: people
-   						}
-
-   						
-   				}
-   			
    			}
    		
    			onAccepted: {
@@ -128,13 +137,11 @@ QQC2.ScrollView {
    						wrongDialog.open()
    						wrongPicture.source = "Larry_Wall.jpg";
    						wrongMsg.text = "Larry Wall developed Perl in 1987.<p>He continues to oversee the project."
-
    					} else if (stallmanButton.clicked) {
    						wrongDialog.open();
    						wrongPicture.source = "Richard_Stallman.jpg"
    						wrongMsg.text = "Richard Stallman is a free software advocate,<p>founder of the GNU project,<p>and the Free Software Foundation."
    					}
-
    				}
    			}
 }
@@ -150,7 +157,6 @@ QQC2.ScrollView {
    						font.bold: true
    						text: "Wrong!"
    						}
-
    					Image {
    						anchors.top: wrongTitle.bottom
    						anchors.horizontalCenter: parent.horizontalCenter
@@ -171,50 +177,31 @@ QQC2.ScrollView {
    					id: rightDialog
    					
 
-   						Label {
-   							id: rightTitle
-   							anchors.horizontalCenter: parent.horizontalCenter
-   							font.pointSize: 14
-   							font.bold: true
-							text: "Correct!"
-							}
+				Label {
+					id: rightTitle
+					anchors.horizontalCenter: parent.horizontalCenter
+					font.pointSize: 14
+					font.bold: true
+				text: "Correct!"
+				}
 
-						Label {
-							id: rightText
-							anchors.top: rightTitle.bottom
-							anchors.horizontalCenter: parent.horizontalCenter
-							text: "It's Bjarne! Good job finding the Easter egg."
-								+ "<p><p>"
-								+ "As a reward, here's a photo of Bjarne Stroustrup looking thoughtful."
-								+ "<p><p>"
-						
-  						}
+				Label {
+					id: rightText
+					anchors.top: rightTitle.bottom
+					anchors.horizontalCenter: parent.horizontalCenter
+					text: "It's Bjarne! Good job finding the Easter egg."
+						+ "<p><p>"
+						+ "As a reward, here's a photo of Bjarne Stroustrup looking thoughtful."
+						+ "<p><p>"
+					}
 
-  						Image {
-  							id: thumbnail
-  							anchors.top: rightText.bottom
-  							width:800
-  							height:480
-  							source: "bjarne-wallpaper.jpg"
-  						}
-
-  						
-   				
-
-
+				Image {
+					id: thumbnail
+					anchors.top: rightText.bottom
+					width:800
+					height:480
+					source: "bjarne-wallpaper.jpg"
+				}
    			}
    				
 }
-   			
-
-   			
-
-   		
-
-   	
-
-
-   	
-
-	
-

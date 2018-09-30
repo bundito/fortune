@@ -1,3 +1,20 @@
+/*
+ *  Copyright (C) 2018 Scott Harvey <scott@spharvey.me>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 import QtQuick 2.7
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
@@ -6,18 +23,10 @@ import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1 as Layout
 import org.kde.kirigami 2.4 as Kirigami
 
-
-
 Item {
 
- 
-
   property var savedFortune: plasmoid.configuration.savedFortune;
-  
   property var foo: updateGroups(0,0);
-
-  //property var groupList: "\'" + groups + "\'";
-  
 
   //-------------------------------------------------//
   // Notification stuff...                           //
@@ -34,21 +43,16 @@ Item {
       }
 
       function createNotification() {
-              var service = notificationSource.serviceForSource("notification");
-              var operation = service.operationDescription("createNotification");
+        var service = notificationSource.serviceForSource("notification");
+        var operation = service.operationDescription("createNotification");
 
-              operation.appName = "Fortune"
-              operation["appIcon"] = Qt.resolvedUrl("../images/fortune-cookie.png");
-              operation.summary = "Fortune"
-              operation["body"] = "A new fortune is available.";
-              operation["timeout"] = 1000;
-              
-
-              service.startOperationCall(operation);
-          }
-
-  
-
+        operation.appName = "Fortune"
+        operation["appIcon"] = Qt.resolvedUrl("../images/fortune-cookie.png");
+        operation.summary = "Fortune"
+        operation["body"] = "A new fortune is available.";
+        operation["timeout"] = 1000;
+        service.startOperationCall(operation);
+      }
 
   Timer {
     id: intervalTimer
@@ -62,7 +66,6 @@ Item {
     }
   }
 
-
 //----------------- END NOTIFICATION ----------------------//
 
    PlasmaCore.IconItem {
@@ -70,37 +73,22 @@ Item {
     id: cookieImg
     source:  newOK ? Qt.resolvedUrl("../images/fortune-cookie.png") : Qt.resolvedUrl("../images/broken-cookie.png")
     anchors.fill: parent
-    
-    
-
    }
 
     function getFortune() {
-
-      console.log("newOK" + newOK);
-
       if (!newOK) {
         fortune = savedFortune;
-
         return;
       } else {
         intervalTimer.running = true;
         newOK = false;
         groups = plasmoid.configuration.activeGroups;
-        
       }
-
-
-
-    console.log(plasmoid.configuration.groupstring);
-    
 
     cmd = "bash " + exec+ "code/fortuneQuery.sh " + groupList + " " + exec + "code/";
     queryDB.interval = 500;
     queryDB.connectedSources = [cmd];
     queryDB.interval = 0;
-
-   // cookieIcon = Qt.resolvedUrl("../images/broken-cookie.png");
   }
 
 
@@ -109,35 +97,17 @@ Item {
     engine: "executable"
     interval: 250
     connectedSources: []
-
     onNewData: {
+      console.log(cmd);
 
-  console.log(cmd);
+    fortune = data.stdout;
+    fortune = fortune.slice(0, -1);
 
+    plasmoid.configuration.savedFortune = fortune;
 
-/*
-      // lorem.txt is 10 lines and 78 characters
-      fortune = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\n"
-+ "incididunt ut labore et dolore magna aliqua. Rhoncus est pellentesque elit\n"
-+ "ullamcorper dignissim cras. Dis parturient montes nascetur ridiculus mus\n"
-+ "mauris. Viverra accumsan in nisl nisi scelerisque eu. Felis donec et odio\n"
-+ "pellentesque diam volutpat commodo. In hac habitasse platea dictumst quisque\n"
-+ "sagittis purus sit. Ullamcorper morbi tincidunt ornare massa eget egesta\n"
-+ "purus. Facilisi etiam dignissim diam quis enim. Tristique et egestas qui\n"
-+ "ipsum. Tellus elementum sagittis vitae et. Mauris rhoncus aenean vel elit."
+    queryDB.connectedSources = [];
 
-*/
-
-fortune = data.stdout;
-fortune = fortune.slice(0, -1);
-
-//fortune = groupList;
-
-plasmoid.configuration.savedFortune = fortune;
-
-queryDB.connectedSources = [];
-
-}
+  }
 
 }
 
@@ -148,17 +118,6 @@ queryDB.connectedSources = [];
       onClicked: {
         getFortune();
         plasmoid.expanded = !plasmoid.expanded;
-
-      
       }
-
   }
-
-
-
-
-
-
-
 }
-     // end

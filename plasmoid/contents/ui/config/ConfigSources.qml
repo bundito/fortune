@@ -479,6 +479,10 @@ queryDB.connectedSources = [];
 					}
 				Label {
 					text: "Homer Simpson quotations"
+					onClicked: {
+						group19.checked = !group19.checked;
+						groupsUpdated(19, group19);
+					}
 				}
 				Label {
 					text: "170"
