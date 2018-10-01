@@ -15,10 +15,11 @@
  *
  */
 
-import QtQuick 2.0
+import QtQuick 2.4
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.kirigami 2.4 as Kirigami
+import "code/moment.js" as Moment;
 
 Item {
 
@@ -31,12 +32,37 @@ Item {
 	property var cmd;
 	property int delay: 200;
 	property var newOK: true;
+	property var nextFortune: plasmoid.configuration.nextFortune;
+	
 
 	id: root
 
+	property var subText;
+
+	Plasmoid.title: "Fortune"
+	Plasmoid.toolTipMainText: "This is Fortune"
+	Plasmoid.toolTipSubText: subText;
 	Plasmoid.backgroundHints: PlasmaCore.Types.NoBackground
 
 	Plasmoid.compactRepresentation : CompactRepresentation {}
 	Plasmoid.fullRepresentation : FullRepresentation {}
 	Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+	
+	function checkTime() {
+           var now = moment()
+           var waitForIt = (now.to(nextFortune));
+           Plasmoid.toolTipSubText = waitForIt;
+         }   
+      
+  Timer {
+    id: checkRemaining
+    interval: 1000
+    running: true
+    repeat: true
+    onTriggered: {
+      checkTime();
+
+    }
+
 	}
+}

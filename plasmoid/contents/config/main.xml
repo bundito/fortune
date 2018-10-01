@@ -188,6 +188,16 @@
     <default>true</default>d
 </entry>
 
+  <entry nme="nextFortune" type="string">
+    <label>Time next fortune is available</label>
+    <default>tomorrow</default>
+    <entry>
+
+  <entry name="interval" type="int">
+    <label>interal between fortunes</label>
+    <default>=1000</default>
+  </entry>
+
 </group>
 
 

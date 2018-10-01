@@ -22,11 +22,19 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.1 as Layout
 import org.kde.kirigami 2.4 as Kirigami
+import "code/moment.js" as Moment
+// import "code/interval.js" as Interval
+
 
 Item {
 
   property var savedFortune: plasmoid.configuration.savedFortune;
   property var foo: updateGroups(0,0);
+  property var nextFortune: 5000;
+  //property var interval: plasmoid.configuration.nextFortune;
+  
+
+  
 
   //-------------------------------------------------//
   // Notification stuff...                           //
@@ -54,28 +62,33 @@ Item {
         service.startOperationCall(operation);
       }
 
+      
+       
+
+  
+
   Timer {
     id: intervalTimer
-    interval: delay * 60
-    running: false
-    repeat: false
-    onTriggered: {
-      newOK = true;
-      console.log("Timer triggered.");
-      createNotification();
-    }
+    interval: 5000
+    running: true
+    repeat: true
+   // onTriggered: {
+    //  checkInterval()
+  //  }
   }
 
 //----------------- END NOTIFICATION ----------------------//
 
    PlasmaCore.IconItem {
-    ToolTip.text: "This is fortune."
     id: cookieImg
     source:  newOK ? Qt.resolvedUrl("../images/fortune-cookie.png") : Qt.resolvedUrl("../images/broken-cookie.png")
     anchors.fill: parent
-   }
+    
+
+     }
 
     function getFortune() {
+      //subText = "New fortune incoming.";
       if (!newOK) {
         fortune = savedFortune;
         return;
@@ -108,13 +121,16 @@ Item {
     queryDB.connectedSources = [];
 
   }
-
 }
+
 
     MouseArea {
       id: mousearea
       anchors.fill: parent
-
+      PlasmaCore.ToolTipArea {
+          
+          subText: i18n("Some explanation.")
+        }
       onClicked: {
         getFortune();
         plasmoid.expanded = !plasmoid.expanded;

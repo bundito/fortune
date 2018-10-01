@@ -22,6 +22,7 @@ import org.kde.plasma.extras 2.0 as PlasmaExtras
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1 as Layout
 import QtQuick.Dialogs 1.3 as Dialogs
+import "../code/moment.js" as Moment
 
 
 Item {
@@ -67,22 +68,33 @@ Item {
 
 			ComboBox {
 				id: intervalBox
-				currentIndex: plasmoid.configuration.intervalIndex
+				//currentIndex: plasmoid.configuration.intervalIndex
 				width: 250
 				model: ListModel {
 					id: intervalItems
-					ListElement { text: "5 minutes"; msecs: 5000 }
-					ListElement { text: "10 minutes"; msecs: 10000 }
-					ListElement { text: "30 minutes"; msecs: 30000 }
-					ListElement { text: "1 hour"; msec: 60000 }
-					ListElement { text: "4 hours"; msec: 240000 }
-					ListElement { text: "8 hours"; msec: 480000 }
-					ListElement { text: "12 hours"; msec: 720000 }
+					ListElement { text: "Please Chose..."; msecs: 0;}
+					ListElement { text: "5 minutes"; msecs: 300; }
+					ListElement { text: "10 minutes"; msecs: 600; }
+					ListElement { text: "30 minutes"; msecs: 1800; }
+					ListElement { text: "1 hour"; msecs: 3600; }
+					ListElement { text: "4 hours"; msecs: 14400; }
+					ListElement { text: "8 hours"; msecs: 28800; }
+					ListElement { text: "12 hours"; msecs: 43200;} // damn that's a lot of msecs
 				}
-			
-				onAccepted: {
-					plasmoid.configuration.intervalIndex = intervalBox.index;
-				}
+		
+
+				onCurrentIndexChanged: {
+					
+					var now = moment();
+					//var add = intervalItems.get(currenttIndex)msecs;
+					var future = moment().add((intervalItems.get(currentIndex).msecs), "seconds");
+
+					console.log(now);
+					console.log(future);
+					console.log("----");
+					future = moment().add(interval), "seconds";
+					plasmoid.configuration.nextFortune = future;
+
 
 			}
 
@@ -105,8 +117,7 @@ Item {
 
 		text: "NOTICE: Historically, a new fortune was only shown once per day.\nIf you leave this box checked, " 
 			 + "a new fortune will unlock each day at 12:01am.\n\n" 
-			 + "However, feel free to set your own interval - including \"none\", \nwhich will give you a new fortune " 
-			 + "each time you click the applet.\n\n" 
+			 + "However, feel free to set your own interval - from every 5 minutes to every 12 hours.\n\n"
 			 + "Do you want to unlock the interval options, or keep the traditional fortune schedule?"
 			 
 
@@ -127,4 +138,4 @@ Item {
 		}
 
 } // end of main Item
-		
+		}
