@@ -89,11 +89,16 @@ Item {
 					//var add = intervalItems.get(currenttIndex)msecs;
 					var future = moment().add((intervalItems.get(currentIndex).msecs), "seconds");
 
-					console.log(now);
+					//console.log(now);
 					console.log(future);
 					console.log("----");
-					future = moment().add(interval), "seconds";
-					plasmoid.configuration.nextFortune = future;
+					//future = moment().add(interval), "seconds";
+					plasmoid.configuration.nextFortune = future.toString();
+					console.log("======");
+					console.log(plasmoid.configuration.nextFortune);
+					console.log("======");
+					console.log(plasmoid.configuration.nextFortune);
+					console.log("======");
 
 
 			}

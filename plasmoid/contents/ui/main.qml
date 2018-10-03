@@ -32,12 +32,11 @@ Item {
 	property var cmd;
 	property int delay: 200;
 	property var newOK: true;
-	property var nextFortune: plasmoid.configuration.nextFortune;
+	property var subText;
+	//property var nextFortune: plasmoid.configuration.nextFortune;
 	
 
 	id: root
-
-	property var subText;
 
 	Plasmoid.title: "Fortune"
 	Plasmoid.toolTipMainText: "This is Fortune"
@@ -48,21 +47,23 @@ Item {
 	Plasmoid.fullRepresentation : FullRepresentation {}
 	Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 	
-	function checkTime() {
-           var now = moment()
-           var waitForIt = (now.to(nextFortune));
-           Plasmoid.toolTipSubText = waitForIt;
-         }   
-      
-  Timer {
-    id: checkRemaining
-    interval: 1000
-    running: true
-    repeat: true
-    onTriggered: {
-      checkTime();
+		function checkTime() {
+	           var now = moment()
+	           var waitForIt = (now.to(plasmoid.configuration.nextFortune));
+	           Plasmoid.toolTipSubText = waitForIt;
+	         }   
+	      
+	  Timer {
+	    id: checkRemaining
+	    interval: 1000
+	    running: true;
+	    repeat: true
+	    onTriggered: {
+	    	console.log(plasmoid.configuration.nextFortune);
+	        checkTime();
 
-    }
+	    }
 
-	}
+		}
+	
 }

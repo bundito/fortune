@@ -55,7 +55,7 @@ Item {
 				
 				anchors.centerIn: baseItem
 				
-				color: plasmoid.configuration.textColor
+				 color: plasmoid.configuration.textColor
 				 font.pointSize: (theme.defaultFont.pointSize) * 1.3
 				 
 				 horizontalAlignment: Text.AlignHCenter
@@ -63,8 +63,9 @@ Item {
 				 font.family: localFont.name
 				//color: txtColor
 				//color: textColor
-				text: fortune
-			}
+				//text: fortune
+				text: plasmoid.configuration.nextFortune;
+			
 
 				MouseArea {
 					anchors.fill: bgImage
@@ -76,33 +77,8 @@ Item {
 
 			}
 
+		}	
+
 			
 
-
-	}	
-
-
-	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-	
-			
-
-
-	
-
-
-
-
-	
+}

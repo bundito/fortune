@@ -30,7 +30,7 @@ Item {
 
   property var savedFortune: plasmoid.configuration.savedFortune;
   property var foo: updateGroups(0,0);
-  property var nextFortune: 5000;
+ // property var nextFortune: 5000;
   //property var interval: plasmoid.configuration.nextFortune;
   
 
